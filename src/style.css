@@ -1,3 +1,16 @@
-.hello {
-  color: red;
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(191, 111, 14);
+}
+
+.topBar {
+  padding: 5px;
+  height: 150px;
 }
