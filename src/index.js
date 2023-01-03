@@ -4,12 +4,13 @@ import "./style.css";
 function base() {
   const element = document.createElement("div");
   element.classList.add("grid-container");
+  element.innerHTML =
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />';
 
   const header = document.createElement("div");
   header.classList.add("item1");
   element.append(header);
-  header.innerHTML = "header";
-
+  header.innerHTML = '<span class="material-symbols-outlined">menu</span>';
   const menu = document.createElement("div");
   menu.classList.add("item2");
   element.append(menu);
@@ -32,4 +33,5 @@ function base() {
 
   return element;
 }
+
 document.body.appendChild(base());
