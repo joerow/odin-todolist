@@ -4,13 +4,40 @@ body {
   padding: 0;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(191, 111, 14);
+.item1 {
+  grid-area: header;
+}
+.item2 {
+  grid-area: menu;
+}
+.item3 {
+  grid-area: main;
+}
+.item4 {
+  grid-area: right;
+}
+.item5 {
+  grid-area: footer;
 }
 
-.topBar {
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "menu main main main right right"
+    "menu footer footer footer footer footer";
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-columns: 150px 1fr 1fr 1fr 1fr 150px;
+
+  gap: 5px;
+  background-color: #c5c5c550;
   padding: 5px;
-  height: 150px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.grid-container > div {
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px 0;
 }
