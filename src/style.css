@@ -9,6 +9,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 10px;
 }
 .item2 {
   grid-area: menu;
@@ -26,11 +28,11 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    "header header header header header header"
-    "menu main main main right right"
-    "menu footer footer footer footer footer";
+    "header header header "
+    "menu main right "
+    " footer footer footer";
   grid-template-rows: 50px 1fr 50px;
-  grid-template-columns: 150px 1fr 1fr 1fr 1fr 150px;
+  grid-template-columns: 200px 1fr 100px;
 
   gap: 5px;
   background-color: #c5c5c550;
@@ -42,7 +44,6 @@ body {
 .grid-container > div {
   background-color: rgb(255, 255, 255);
   text-align: center;
-  padding: 20px 0;
 }
 
 @font-face {
