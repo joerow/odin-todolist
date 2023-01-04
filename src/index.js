@@ -1,5 +1,5 @@
 import "./style.css";
-import { myLists } from "./lists.js";
+import { myProjects } from "./lists.js";
 function header() {
   const header = document.createElement("div");
   header.classList.add("item1");
@@ -12,7 +12,7 @@ function header() {
 function lists() {
   const lists = document.createElement("div");
   lists.classList.add("item2");
-  myLists.functionThree();
+  myProjects.functionThree();
   lists.innerHTML = "Lists not loaded";
   return lists;
 }
