@@ -1,5 +1,10 @@
-export default function Lists() {
-  function load() {
-    console.log("load lists run");
+//module for managing lists
+const myLists = (() => {
+  function functionThree() {
+    console.log("Function 3");
   }
-}
+  return {
+    functionThree,
+  };
+})();
+export { myLists };
