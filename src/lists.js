@@ -1,12 +1,19 @@
 //module for managing lists
-const myProjects = (() => {
-  function functionThree() {
+//factory function for creating projects
+const myProjects = (name, date) => {
+  let pName = name;
+  let pDate = date;
+  const getName = () => pName;
+  const getDate = () => pDate;
+  function testLoad() {
     console.log("Function 3");
   }
   return {
-    functionThree,
+    getName,
+    getDate,
+    testLoad,
   };
-})();
+};
 export { myProjects };
 
 //

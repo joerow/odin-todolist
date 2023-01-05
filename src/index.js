@@ -12,7 +12,7 @@ function header() {
 function lists() {
   const lists = document.createElement("div");
   lists.classList.add("item2");
-  myProjects.functionThree();
+  //TODO load lists here
   lists.innerHTML = "Lists not loaded";
   return lists;
 }
