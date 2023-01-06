@@ -1,56 +1,84 @@
 import "./style.css";
 import { myProjects } from "./lists.js";
-function header() {
-  const header = document.createElement("div");
-  header.classList.add("item1");
-  header.innerHTML = '<span class="material-symbols-outlined">menu</span>';
-  header.innerHTML +=
-    '<span class="material-symbols-outlined">account_circle</span>';
-  return header;
-}
 
-function lists() {
-  const lists = document.createElement("div");
-  lists.classList.add("item2");
+//create the navbar
+function nav() {
+  const nav = document.createElement("div");
+  nav.classList.add("nav");
+
+  // top section including profile
+  const navTop = document.createElement("div");
+  navTop.classList.add("nav-top");
+
+  //profile section
+  const navProfile = document.createElement("div");
+  navProfile.classList.add("nav-profile");
+  navTop.append(navProfile);
+
+  //profile icon
+  const profileIcon = document.createElement("div");
+  profileIcon.classList.add("profile-icon");
+  profileIcon.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">account_circle</span>';
+  navProfile.appendChild(profileIcon);
+
+  //profile name
+  const profileName = document.createElement("div");
+  profileName.classList.add("profile-name");
+  profileName.innerHTML = "Profile Name";
+  navProfile.appendChild(profileName);
+
+  //shrink nav menu icon
+  const shrinkNav = document.createElement("div");
+  shrinkNav.classList.add("shrink-nav");
+  shrinkNav.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">chevron_left</span>';
+  navTop.appendChild(shrinkNav);
+  nav.append(navTop);
+
+  const navSeparator = document.createElement("div");
+  navSeparator.classList.add("nav-separator");
+  nav.append(navSeparator);
+
+  const navFilters = document.createElement("div");
+  navFilters.classList.add("nav-filters");
+  navFilters.innerText = "navFilters";
+  nav.append(navFilters);
+
   //TODO load lists here
-  lists.innerHTML = "Lists not loaded";
-  return lists;
+  const navProjects = document.createElement("div");
+  navProjects.classList.add("nav-projects");
+  navProjects.innerText = "navProjects";
+  nav.append(navProjects);
+  return nav;
 }
 
-function base() {
+function buildBase() {
   // create the grid contianer
   const element = document.createElement("div");
-  element.classList.add("grid-container");
+  element.classList.add("container");
   element.innerHTML =
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />';
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />';
 
-  // create the header
-  element.append(header());
-  // create the menu
-  element.append(lists());
+  // create the nav menu
+  element.append(nav());
 
   // create the main area
   const main = document.createElement("div");
-  main.classList.add("item3");
+  main.classList.add("main-area");
   element.append(main);
-  main.innerHTML = "List items not loaded";
-
-  // create the right menu
-  const right = document.createElement("div");
-  right.classList.add("item4");
-  element.append(right);
-  right.innerHTML = "Item Edit";
+  main.innerHTML = "main area";
 
   // create the footer
   const footer = document.createElement("div");
-  footer.classList.add("item5");
-  element.append(footer);
+  footer.classList.add("footer");
+  main.append(footer);
   footer.innerHTML = "footer";
 
   return element;
 }
 
-document.body.appendChild(base());
+document.body.appendChild(buildBase());
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function storageAvailable(type) {

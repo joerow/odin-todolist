@@ -4,54 +4,41 @@ body {
   padding: 0;
 }
 
-.item1 {
-  grid-area: header;
+.nav {
+  padding: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 10px 0 10px;
-}
-.item2 {
-  grid-area: menu;
-}
-.item3 {
-  grid-area: main;
-}
-.item4 {
-  grid-area: right;
-}
-.item5 {
-  grid-area: footer;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "header header header "
-    "menu main right "
-    " footer footer footer";
-  grid-template-rows: 50px 1fr 50px;
-  grid-template-columns: 200px 1fr 100px;
-
-  gap: 5px;
-  background-color: #c5c5c550;
-  padding: 5px;
+  gap: 20px;
+  width: 300px;
   height: 100vh;
-  width: 100vw;
+  background: #ffffff;
+  border-right: 1px solid #000000;
+}
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.nav-separator {
+  border-top: 1px solid black;
+  width: calc(100% - 40%);
+}
+.container {
+  display: flex;
 }
 
-.grid-container > div {
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-}
-
-@font-face {
-  font-family: "MustardSmile";
-  src: url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-  font-style: normal;
-}
-
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+.main-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
 }
