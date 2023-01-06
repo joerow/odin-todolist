@@ -36,14 +36,18 @@ function nav() {
   navTop.appendChild(shrinkNav);
   nav.append(navTop);
 
-  const navSeparator = document.createElement("div");
-  navSeparator.classList.add("nav-separator");
-  nav.append(navSeparator);
+  const navSeparator1 = document.createElement("div");
+  navSeparator1.classList.add("nav-separator");
+  nav.append(navSeparator1);
 
   const navFilters = document.createElement("div");
   navFilters.classList.add("nav-filters");
   navFilters.innerText = "navFilters";
   nav.append(navFilters);
+
+  const navSeparator2 = document.createElement("div");
+  navSeparator2.classList.add("nav-separator");
+  nav.append(navSeparator2);
 
   //TODO load lists here
   const navProjects = document.createElement("div");
