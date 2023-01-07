@@ -42,8 +42,59 @@ function nav() {
 
   const navFilters = document.createElement("div");
   navFilters.classList.add("nav-filters");
-  navFilters.innerText = "navFilters";
   nav.append(navFilters);
+
+  const navFilterEverything = document.createElement("div");
+  navFilterEverything.classList.add("nav-filter", "nf-everything");
+  const navFilterEverythingIcon = document.createElement("div");
+  navFilterEverythingIcon.classList.add("nf-icon");
+  navFilterEverythingIcon.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">all_inbox</span>';
+  const navFilterEverythingLabel = document.createElement("div");
+  navFilterEverythingLabel.classList.add("nf-Label");
+  navFilterEverythingLabel.innerText = "Everything";
+  navFilterEverything.append(navFilterEverythingIcon);
+  navFilterEverything.append(navFilterEverythingLabel);
+  navFilters.append(navFilterEverything);
+
+  const navFilterToday = document.createElement("div");
+  navFilterToday.classList.add("nav-filter", "nf-today");
+  const navFilterTodayIcon = document.createElement("div");
+  navFilterTodayIcon.classList.add("nf-icon");
+  navFilterTodayIcon.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">today</span>';
+  const navFilterTodayLabel = document.createElement("div");
+  navFilterTodayLabel.classList.add("nf-Label");
+  navFilterTodayLabel.innerText = "Today";
+  navFilterToday.append(navFilterTodayIcon);
+  navFilterToday.append(navFilterTodayLabel);
+  navFilters.append(navFilterToday);
+
+  const navFilterUpcoming = document.createElement("div");
+  navFilterUpcoming.classList.add("nav-filter", "nf-upcoming");
+  const navFilterUpcomingIcon = document.createElement("div");
+  navFilterUpcomingIcon.classList.add("nf-icon");
+  navFilterUpcomingIcon.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">event_upcoming</span>';
+  const navFilterUpcomingLabel = document.createElement("div");
+  navFilterUpcomingLabel.classList.add("nf-Label");
+  navFilterUpcomingLabel.innerText = "Upcoming";
+  navFilterUpcoming.append(navFilterUpcomingIcon);
+  navFilterUpcoming.append(navFilterUpcomingLabel);
+  navFilters.append(navFilterUpcoming);
+
+  const navFilterArchive = document.createElement("div");
+  navFilterArchive.classList.add("nav-filter", "nf-archive");
+  const navFilterArchiveIcon = document.createElement("div");
+  navFilterArchiveIcon.classList.add("nf-icon");
+  navFilterArchiveIcon.innerHTML =
+    '<span class="material-symbols-outlined" style="font-size: 48px;">folder_open</span>';
+  const navFilterArchiveLabel = document.createElement("div");
+  navFilterArchiveLabel.classList.add("nf-Label");
+  navFilterArchiveLabel.innerText = "Archive";
+  navFilterArchive.append(navFilterArchiveIcon);
+  navFilterArchive.append(navFilterArchiveLabel);
+  navFilters.append(navFilterArchive);
 
   const navSeparator2 = document.createElement("div");
   navSeparator2.classList.add("nav-separator");
