@@ -102,6 +102,12 @@ const domFunctions = (name, date) => {
     navProjects.classList.add("nav-projects");
     navProjects.innerText = "navProjects";
     nav.append(navProjects);
+
+    // create the footer
+    const footer = document.createElement("div");
+    footer.classList.add("footer");
+    nav.append(footer);
+    footer.innerHTML = "footer";
     return nav;
   }
   function buildBase() {
@@ -119,19 +125,24 @@ const domFunctions = (name, date) => {
     main.classList.add("main-area");
     element.append(main);
     main.innerHTML = "main area";
-
-    // create the footer
-    const footer = document.createElement("div");
-    footer.classList.add("footer");
-    main.append(footer);
-    footer.innerHTML = "footer";
+    main.id = "display";
 
     document.body.append(element);
     return;
   }
+  function renderTodoList(todoList) {
+    let display = document.getElementById("display");
+    todoList.forEach((item) => {
+      const todoTitle = document.createElement("div");
+      todoTitle.id = item.getTitle();
+      todoTitle.textContent = item.getTitle();
+      display.appendChild(todoTitle);
+    });
+  }
   return {
     nav,
     buildBase,
+    renderTodoList,
   };
 };
 export { domFunctions };

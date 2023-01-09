@@ -1,51 +1,36 @@
 //module for managing lists
 //factory function for creating projects
-const myProjects = (name, date) => {
-  let pName = name;
-  let pDate = date;
-  const getName = () => pName;
-  const getDate = () => pDate;
-  function testLoad() {
-    console.log("Function 3");
-  }
+const todo = (title, description, dueDate, priority) => {
+  let todoTitle = title;
+  let todoDescription = description;
+  let todoDue = dueDate;
+  let todoPriority = priority;
+  const getTitle = () => todoTitle;
+  const getDescription = () => todoDescription;
+  const getDue = () => todoDue;
+  const getPriority = () => todoPriority;
+  function newTodo() {}
   return {
-    getName,
-    getDate,
-    testLoad,
+    newTodo,
+    getTitle,
+    getDescription,
+    getDue,
+    getPriority,
   };
 };
-export { myProjects };
+export { todo };
 
-//
-/* factory to make players 
-const Player = (name, playerSymbol) => {
-  let pName = name;
-  let pSymbol = playerSymbol;
-  const getSymbol = () => pSymbol;
-  const getName = () => pName;
-  function setName(newName) {
-    if (newName === "") {
-    } else {
-      pName = newName;
-    }
+/* class MenuItem {
+  constructor(title, description, imageName) {
+    this.title = title;
+    this.description = description;
+    this.imageName = imageName;
   }
-  return { getSymbol, getName, setName };
-}; 
-const player1 = Player("Player 1", "X");
-
-  class MenuItem {
-    constructor(title, description, imageName) {
-      this.title = title;
-      this.description = description;
-      this.imageName = imageName;
-    }
-  }
-  let burrito = new MenuItem(
-    "Vegan Burritos",
-    "Featuring cilantro-lime rice, chipotle-spiced black beans, sautéed peppers and onions, and a zesty avocado cream sauce",
-    burritoImage
-  );
-
-*/
-
+}
+let burrito = new MenuItem(
+  "Vegan Burritos",
+  "Featuring cilantro-lime rice, chipotle-spiced black beans, sautéed peppers and onions, and a zesty avocado cream sauce",
+  burritoImage
+);
+ */
 /* Projects contain multiple todo lists which contain multiple todo items */

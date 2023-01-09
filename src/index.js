@@ -1,8 +1,8 @@
 import "./style.css";
-import { myProjects } from "./lists.js";
+import { todo } from "./lists.js";
 import { domFunctions } from "./domFunctions.js";
 
-const domHandler = domFunctions("test", "testtt");
+const domHandler = domFunctions();
 domHandler.buildBase();
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
@@ -34,3 +34,15 @@ function storageAvailable(type) {
 }
 console.log(storageAvailable("sessionStorage"));
 console.log(storageAvailable("localStorage"));
+
+//some example todos
+let testy = todo(
+  "This is a test title",
+  "This is a todo description",
+  "Due Date",
+  "Priority"
+);
+let todoList = [];
+todoList.push(testy);
+console.log(todoList[0].getDescription());
+domHandler.renderTodoList(todoList);
