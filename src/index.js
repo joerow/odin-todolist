@@ -39,10 +39,16 @@ console.log(storageAvailable("localStorage"));
 let testy = todo(
   "This is a test title",
   "This is a todo description",
-  "Due Date",
-  "Priority"
+  "07/04/2023",
+  "High Priority"
+);
+let testy2 = todo(
+  "Here is another todo item",
+  "This is a todo description",
+  "12/02/2021",
+  "Low Priority"
 );
 let todoList = [];
-todoList.push(testy);
+todoList.push(testy, testy2);
 console.log(todoList[0].getDescription());
 domHandler.renderTodoList(todoList);

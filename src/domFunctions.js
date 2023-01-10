@@ -124,19 +124,32 @@ const domFunctions = (name, date) => {
     const main = document.createElement("div");
     main.classList.add("main-area");
     element.append(main);
-    main.innerHTML = "main area";
+    const title = document.createElement("h1");
+    title.textContent = "Today:";
+    main.append(title);
     main.id = "display";
-
     document.body.append(element);
     return;
   }
   function renderTodoList(todoList) {
     let display = document.getElementById("display");
-    todoList.forEach((item) => {
+    todoList.forEach((item, index) => {
+      const todoContainer = document.createElement("div");
+      todoContainer.classList.add("todo-item");
+      todoContainer.dataset.index = index;
+      display.append(todoContainer);
       const todoTitle = document.createElement("div");
-      todoTitle.id = item.getTitle();
+      todoTitle.classList.add("todo-title");
       todoTitle.textContent = item.getTitle();
-      display.appendChild(todoTitle);
+      todoContainer.appendChild(todoTitle);
+      const todoDue = document.createElement("div");
+      todoDue.classList.add("todo-due");
+      todoDue.textContent = item.getDue();
+      todoContainer.appendChild(todoDue);
+      const todoPriority = document.createElement("div");
+      todoPriority.classList.add("todo-priority");
+      todoPriority.textContent = item.getPriority();
+      todoContainer.appendChild(todoPriority);
     });
   }
   return {

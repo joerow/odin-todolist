@@ -75,3 +75,38 @@ body {
 .footer {
   bottom: 0;
 }
+
+#display {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  gap: 5px;
+}
+
+.todo-item {
+  display: grid;
+  grid-template: 1.5rem 1.5rem / repeat(3, 1fr);
+  justify-items: flex-start;
+  align-items: flex-start;
+
+  height: 3rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000;
+}
+
+.todo-title {
+  background-color: aquamarine;
+  grid-row: 1;
+  grid-column: span 3;
+}
+
+.todo-due {
+  background-color: aqua;
+  grid-column: 2;
+}
+
+.todo-priority {
+  background-color: bisque;
+  grid-column: 3;
+}
