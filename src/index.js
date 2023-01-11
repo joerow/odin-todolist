@@ -1,5 +1,5 @@
 import "./style.css";
-import { todo } from "./lists.js";
+import { todo, testfn } from "./lists.js";
 import { domFunctions } from "./domFunctions.js";
 
 const domHandler = domFunctions();
@@ -50,5 +50,6 @@ let testy2 = todo(
 );
 let todoList = [];
 todoList.push(testy, testy2);
-console.log(todoList[0].getDescription());
 domHandler.renderTodoList(todoList);
+let listManager = testfn();
+listManager.testfunction();

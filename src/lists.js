@@ -18,7 +18,13 @@ const todo = (title, description, dueDate, priority) => {
     getPriority,
   };
 };
-export { todo };
+const testfn = () => {
+  const testfunction = (x) => {
+    console.log("this is the test fn");
+  };
+  return { testfunction };
+};
+export { todo, testfn };
 
 /* class MenuItem {
   constructor(title, description, imageName) {

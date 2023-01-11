@@ -85,20 +85,25 @@ body {
 
 .todo-item {
   display: grid;
-  grid-template: 1.5rem 1.5rem / repeat(3, 1fr);
+  grid-template: auto auto / 1.8rem repeat(3, 1fr);
   justify-items: flex-start;
   align-items: flex-start;
-
-  height: 3rem;
   width: 100%;
   padding: 10px;
   border: 1px solid #000000;
+}
+.todo-check {
+  grid-row: 1 / 3;
+  align-items: center;
+  align-self: center;
+  height: 24px;
+  cursor: pointer;
 }
 
 .todo-title {
   background-color: aquamarine;
   grid-row: 1;
-  grid-column: span 3;
+  grid-column: 2 / span 3;
 }
 
 .todo-due {
@@ -108,5 +113,9 @@ body {
 
 .todo-priority {
   background-color: bisque;
-  grid-column: 3;
+  grid-column: 4;
+  display: flex;
+  align-self: center;
+  justify-self: right;
+  font-size: small;
 }

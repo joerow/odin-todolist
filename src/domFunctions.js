@@ -138,6 +138,11 @@ const domFunctions = (name, date) => {
       todoContainer.classList.add("todo-item");
       todoContainer.dataset.index = index;
       display.append(todoContainer);
+      const todoCheck = document.createElement("div");
+      todoCheck.classList.add("todo-check");
+      todoCheck.innerHTML =
+        '<span class="material-symbols-outlined">check_box_outline_blank</span>';
+      todoContainer.append(todoCheck);
       const todoTitle = document.createElement("div");
       todoTitle.classList.add("todo-title");
       todoTitle.textContent = item.getTitle();
