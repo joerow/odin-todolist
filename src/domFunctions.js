@@ -131,6 +131,7 @@ const domFunctions = (name, date) => {
     document.body.append(element);
     return;
   }
+
   function renderTodoList(todoList) {
     let display = document.getElementById("display");
     todoList.forEach((item, index) => {
@@ -146,7 +147,12 @@ const domFunctions = (name, date) => {
         '<span class="material-symbols-outlined">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
       //TODOadd the checkbox event listener to delete the parent box
-      todoCheck.addEventListener("click");
+      /*  todoCheck.addEventListener("click", todoCheck.parentElement.remove(), {
+        capture: true,
+      }); */
+      todoCheck.addEventListener("click", (e) =>
+        todoCheck.parentElement.remove()
+      );
       // add the title
       const todoTitle = document.createElement("div");
       todoTitle.classList.add("todo-title");
@@ -170,4 +176,5 @@ const domFunctions = (name, date) => {
     renderTodoList,
   };
 };
+
 export { domFunctions };
