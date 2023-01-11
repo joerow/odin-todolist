@@ -18,13 +18,27 @@ const todo = (title, description, dueDate, priority) => {
     getPriority,
   };
 };
-const testfn = () => {
-  const testfunction = (x) => {
-    console.log("this is the test fn");
+const todoFunctions = () => {
+  let todoList = [];
+  let testy = todo(
+    "This is a test title",
+    "This is a todo description",
+    "07/04/2023",
+    "High Priority"
+  );
+  let testy2 = todo(
+    "Here is another todo item",
+    "This is a todo description",
+    "12/02/2021",
+    "Low Priority"
+  );
+  todoList.push(testy, testy2);
+  const getList = () => {
+    return todoList;
   };
-  return { testfunction };
+  return { getList };
 };
-export { todo, testfn };
+export { todo, todoFunctions };
 
 /* class MenuItem {
   constructor(title, description, imageName) {

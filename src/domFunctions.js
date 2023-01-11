@@ -134,23 +134,30 @@ const domFunctions = (name, date) => {
   function renderTodoList(todoList) {
     let display = document.getElementById("display");
     todoList.forEach((item, index) => {
+      //create the container for the item
       const todoContainer = document.createElement("div");
       todoContainer.classList.add("todo-item");
       todoContainer.dataset.index = index;
       display.append(todoContainer);
+      //add the checkbox icon
       const todoCheck = document.createElement("div");
       todoCheck.classList.add("todo-check");
       todoCheck.innerHTML =
         '<span class="material-symbols-outlined">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
+      //TODOadd the checkbox event listener to delete the parent box
+      todoCheck.addEventListener("click");
+      // add the title
       const todoTitle = document.createElement("div");
       todoTitle.classList.add("todo-title");
       todoTitle.textContent = item.getTitle();
       todoContainer.appendChild(todoTitle);
+      //add the due date
       const todoDue = document.createElement("div");
       todoDue.classList.add("todo-due");
       todoDue.textContent = item.getDue();
       todoContainer.appendChild(todoDue);
+      // add the priority
       const todoPriority = document.createElement("div");
       todoPriority.classList.add("todo-priority");
       todoPriority.textContent = item.getPriority();
