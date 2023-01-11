@@ -146,10 +146,7 @@ const domFunctions = (name, date) => {
       todoCheck.innerHTML =
         '<span class="material-symbols-outlined">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
-      //TODOadd the checkbox event listener to delete the parent box
-      /*  todoCheck.addEventListener("click", todoCheck.parentElement.remove(), {
-        capture: true,
-      }); */
+      //TODO edit the checkbox event listener to toggle
       todoCheck.addEventListener("click", (e) =>
         todoCheck.parentElement.remove()
       );
