@@ -119,3 +119,7 @@ body {
   justify-self: right;
   font-size: small;
 }
+
+.add-todo {
+  cursor: pointer;
+}

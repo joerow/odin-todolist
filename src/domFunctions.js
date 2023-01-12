@@ -144,11 +144,13 @@ const domFunctions = (name, date) => {
       const todoCheck = document.createElement("div");
       todoCheck.classList.add("todo-check");
       todoCheck.innerHTML =
-        '<span class="material-symbols-outlined">check_box_outline_blank</span>';
+        '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
       //TODO edit the checkbox event listener to toggle
-      todoCheck.addEventListener("click", (e) =>
-        todoCheck.parentElement.remove()
+      todoCheck.addEventListener(
+        "click",
+        (e) => todoCheck.parentElement.remove()
+        //listHandler.toggleArchiveStatus(todoCheck.parentElement.dataset.index)
       );
       // add the title
       const todoTitle = document.createElement("div");
@@ -166,6 +168,14 @@ const domFunctions = (name, date) => {
       todoPriority.textContent = item.getPriority();
       todoContainer.appendChild(todoPriority);
     });
+    const addTodoIcon = document.createElement("div");
+    addTodoIcon.classList.add("add-todo");
+    addTodoIcon.innerHTML =
+      '<span class="material-symbols-outlined" style="font-size: 2rem;">add_box</span>';
+    addTodoIcon.addEventListener("click", (e) =>
+      console.log("add new todo clicked")
+    );
+    display.appendChild(addTodoIcon);
   }
   return {
     nav,

@@ -1,14 +1,25 @@
 //module for managing lists
 //factory function for creating projects
-const todo = (title, description, dueDate, priority) => {
+const todo = (
+  title,
+  description,
+  dueDate,
+  priority,
+  project,
+  archiveStatus
+) => {
   let todoTitle = title;
   let todoDescription = description;
   let todoDue = dueDate;
   let todoPriority = priority;
+  let todoProject = project;
+  let todoArchiveStatus = archiveStatus;
   const getTitle = () => todoTitle;
   const getDescription = () => todoDescription;
   const getDue = () => todoDue;
   const getPriority = () => todoPriority;
+  const getProject = () => todoProject;
+  const getArchiveStatus = () => todoArchiveStatus;
   function newTodo() {}
   return {
     newTodo,
@@ -16,6 +27,8 @@ const todo = (title, description, dueDate, priority) => {
     getDescription,
     getDue,
     getPriority,
+    getProject,
+    getArchiveStatus,
   };
 };
 const todoFunctions = () => {
@@ -24,7 +37,9 @@ const todoFunctions = () => {
     "This is a test title",
     "This is a todo description",
     "07/04/2023",
-    "High Priority"
+    "High Priority",
+    "",
+    false
   );
   let testy2 = todo(
     "Here is another todo item",
@@ -36,7 +51,17 @@ const todoFunctions = () => {
   const getList = () => {
     return todoList;
   };
-  return { getList };
+  const toggleArchiveStatus = (index) => {
+    console.log(todolist[index].getArchiveStatus);
+    if (todolist[index].getArchiveStatus) {
+      todolist[index].archiveStatus = false;
+      console.log("archive status set to false");
+    } else {
+      todolist[index].archiveStatus = true;
+      console.log("archive status set to false");
+    }
+  };
+  return { getList, toggleArchiveStatus };
 };
 export { todo, todoFunctions };
 
