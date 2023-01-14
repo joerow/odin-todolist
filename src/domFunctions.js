@@ -125,7 +125,7 @@ const domFunctions = (name, date) => {
     main.classList.add("main-area");
     element.append(main);
     const title = document.createElement("h1");
-    title.textContent = "Today:";
+    title.textContent = "Everything:";
     main.append(title);
     main.id = "display";
     document.body.append(element);
