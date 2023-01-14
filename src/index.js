@@ -3,15 +3,27 @@ import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 
 const domHandler = domFunctions();
+const listHandler = todoFunctions();
 domHandler.buildBase();
-let listHandler = todoFunctions();
 domHandler.renderTodoList(listHandler.getList());
-
+refreshListeners();
 //TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
 //TODO add  a module for projects
 //TODO implement localstorage to save and retreive the todo items
 //TODO refactor the tasks so that they are included as part of projects
 //TODO make the nav filters filter through the projects to only show todo's with the correct properties e.g. date
+
+function refreshListeners() {
+  let todoChecks = [...document.getElementsByClassName("todo-check")];
+  console.log(todoChecks);
+  todoChecks.forEach((element) => {
+    element.addEventListener("click", (e) =>
+      listHandler.toggleArchiveStatus(element.parentElement.dataset.index)
+    );
+  });
+  let addTodo = document.querySelector(".add-todo");
+  //TODO creare modal addTodo.addEventListener("click", (e) => dosomething);
+}
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function storageAvailable(type) {
@@ -40,7 +52,7 @@ function storageAvailable(type) {
     );
   }
 }
-console.log(storageAvailable("sessionStorage"));
-console.log(storageAvailable("localStorage"));
+console.log("Session storage available: " + storageAvailable("sessionStorage"));
+console.log("Local storage available: " + storageAvailable("localStorage"));
 
 //some example todos

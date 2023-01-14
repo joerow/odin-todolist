@@ -20,6 +20,7 @@ const todo = (
   const getPriority = () => todoPriority;
   const getProject = () => todoProject;
   const getArchiveStatus = () => todoArchiveStatus;
+  const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
   function newTodo() {}
   return {
     newTodo,
@@ -29,6 +30,7 @@ const todo = (
     getPriority,
     getProject,
     getArchiveStatus,
+    setArchiveStatus,
   };
 };
 const todoFunctions = () => {
@@ -52,13 +54,12 @@ const todoFunctions = () => {
     return todoList;
   };
   const toggleArchiveStatus = (index) => {
-    console.log(todolist[index].getArchiveStatus);
-    if (todolist[index].getArchiveStatus) {
-      todolist[index].archiveStatus = false;
+    if (todoList[index].getArchiveStatus()) {
+      todoList[index].setArchiveStatus(false);
       console.log("archive status set to false");
     } else {
-      todolist[index].archiveStatus = true;
-      console.log("archive status set to false");
+      todoList[index].setArchiveStatus(true);
+      console.log("archive status set to true");
     }
   };
   return { getList, toggleArchiveStatus };

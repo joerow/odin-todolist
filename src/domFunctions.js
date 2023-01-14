@@ -147,12 +147,12 @@ const domFunctions = (name, date) => {
         '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
       //TODO edit the checkbox event listener to toggle
-      todoCheck.addEventListener(
+      /*       todoCheck.addEventListener(
         "click",
         (e) => todoCheck.parentElement.remove()
         //listHandler.toggleArchiveStatus(todoCheck.parentElement.dataset.index)
       );
-      // add the title
+      // add the title */
       const todoTitle = document.createElement("div");
       todoTitle.classList.add("todo-title");
       todoTitle.textContent = item.getTitle();
