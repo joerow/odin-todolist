@@ -129,6 +129,22 @@ const domFunctions = (name, date) => {
     main.append(title);
     main.id = "display";
     document.body.append(element);
+
+    //create the model - hidden by default
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    modal.id = "myModal";
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+    const modalClose = document.createElement("span");
+    modalClose.classList.add("close");
+    modalClose.innerHTML = "&times;";
+    modalContent.append(modalClose);
+    const modalText = document.createElement("p");
+    modalText.innerText = "Some text in the modal";
+    modalContent.append(modalText);
+    modal.append(modalContent);
+    main.append(modal);
     return;
   }
 
@@ -168,19 +184,40 @@ const domFunctions = (name, date) => {
       todoPriority.textContent = item.getPriority();
       todoContainer.appendChild(todoPriority);
     });
-    const addTodoIcon = document.createElement("div");
-    addTodoIcon.classList.add("add-todo");
+    const addTodoIcon = document.createElement("button");
+    addTodoIcon.id = "add-todo";
     addTodoIcon.innerHTML =
       '<span class="material-symbols-outlined" style="font-size: 2rem;">add_box</span>';
-    addTodoIcon.addEventListener("click", (e) =>
-      console.log("add new todo clicked")
-    );
     display.appendChild(addTodoIcon);
+  }
+  function openModal() {
+    console.log("modal opened");
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
   }
   return {
     nav,
     buildBase,
     renderTodoList,
+    openModal,
   };
 };
 

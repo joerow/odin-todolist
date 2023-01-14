@@ -21,8 +21,8 @@ function refreshListeners() {
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index)
     );
   });
-  let addTodo = document.querySelector(".add-todo");
-  //TODO creare modal addTodo.addEventListener("click", (e) => dosomething);
+  let addTodo = document.querySelector("#add-todo");
+  addTodo.addEventListener("click", (e) => domHandler.openModal());
 }
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
