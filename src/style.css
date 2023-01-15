@@ -122,6 +122,11 @@ body {
 
 #add-todo {
   cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 /* The Modal (background) */
