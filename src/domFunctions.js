@@ -136,13 +136,23 @@ const domFunctions = (name, date) => {
     modal.id = "myModal";
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
+    const modalForm = document.createElement("div");
+    modalForm.classList.add("modal-form");
+    modalForm.innerHTML =
+      '<form action="" method="post" id="new-todo">' +
+      '<label for="newTitle">Title<input type="text" name="newTitle" id="newTitle" required /></label>' +
+      '<label for="newDescription">Description<input type="text" name="newDescription" id="newDescription" required /></label>' +
+      '<label for="new-due">Due:<input type="date" name="new-due" id="new-due" required /></label>' +
+      '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="high" /></label>' +
+      '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="medium" checked="checked" /></label>' +
+      '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="low" /></label>' +
+      '<label for="submit"><input type="button" value="Submit" id="newSubmit" /></label>' +
+      "</form>";
+    modalContent.append(modalForm);
     const modalClose = document.createElement("span");
     modalClose.classList.add("close");
     modalClose.innerHTML = "&times;";
     modalContent.append(modalClose);
-    const modalText = document.createElement("p");
-    modalText.innerText = "Some text in the modal";
-    modalContent.append(modalText);
     modal.append(modalContent);
     main.append(modal);
     return;
@@ -191,7 +201,6 @@ const domFunctions = (name, date) => {
     display.appendChild(addTodoIcon);
   }
   function openModal() {
-    console.log("modal opened");
     // Get the modal
     var modal = document.getElementById("myModal");
 
