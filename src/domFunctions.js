@@ -128,6 +128,16 @@ const domFunctions = (name, date) => {
     title.textContent = "Everything:";
     main.append(title);
     main.id = "display";
+    const todoDisplay = document.createElement("div");
+    todoDisplay.classList.add("todo-holder");
+    todoDisplay.id = "display-todos";
+    main.appendChild(todoDisplay);
+    const addTodoIcon = document.createElement("button");
+    addTodoIcon.id = "add-todo";
+    addTodoIcon.innerHTML =
+      '<span class="material-symbols-outlined" style="font-size: 2rem;">add_box</span>';
+    main.appendChild(addTodoIcon);
+
     document.body.append(element);
 
     //create the model - hidden by default
@@ -140,13 +150,13 @@ const domFunctions = (name, date) => {
     modalForm.classList.add("modal-form");
     modalForm.innerHTML =
       '<form action="" method="post" id="new-todo">' +
-      '<label for="newTitle">Title<input type="text" name="newTitle" id="newTitle" required /></label>' +
-      '<label for="newDescription">Description<input type="text" name="newDescription" id="newDescription" required /></label>' +
+      '<label for="newTitle">Title<input type="text" name="newTitle" id="new-title" required /></label>' +
+      '<label for="newDescription">Description<input type="text" name="new-description" id="new-description" required /></label>' +
       '<label for="new-due">Due:<input type="date" name="new-due" id="new-due" required /></label>' +
       '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="high" /></label>' +
       '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="medium" checked="checked" /></label>' +
       '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="low" /></label>' +
-      '<label for="submit"><input type="button" value="Submit" id="newSubmit" /></label>' +
+      '<label for="submit"><input type="button" value="Submit" id="new-submit" /></label>' +
       "</form>";
     modalContent.append(modalForm);
     const modalClose = document.createElement("span");
@@ -159,7 +169,8 @@ const domFunctions = (name, date) => {
   }
 
   function renderTodoList(todoList) {
-    let display = document.getElementById("display");
+    let display = document.getElementById("display-todos");
+    display.innerHTML = "";
     todoList.forEach((item, index) => {
       //create the container for the item
       const todoContainer = document.createElement("div");
@@ -167,54 +178,39 @@ const domFunctions = (name, date) => {
       todoContainer.dataset.index = index;
       display.append(todoContainer);
       //add the checkbox icon
-      const todoCheck = document.createElement("div");
+      const todoCheck = document.createElement("button");
       todoCheck.classList.add("todo-check");
       todoCheck.innerHTML =
         '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box_outline_blank</span>';
       todoContainer.append(todoCheck);
-      //TODO edit the checkbox event listener to toggle
-      /*       todoCheck.addEventListener(
-        "click",
-        (e) => todoCheck.parentElement.remove()
-        //listHandler.toggleArchiveStatus(todoCheck.parentElement.dataset.index)
-      );
       // add the title */
-      const todoTitle = document.createElement("div");
+      const todoTitle = document.createElement("button");
       todoTitle.classList.add("todo-title");
       todoTitle.textContent = item.getTitle();
       todoContainer.appendChild(todoTitle);
       //add the due date
-      const todoDue = document.createElement("div");
+      const todoDue = document.createElement("button");
       todoDue.classList.add("todo-due");
       todoDue.textContent = item.getDue();
       todoContainer.appendChild(todoDue);
       // add the priority
-      const todoPriority = document.createElement("div");
+      const todoPriority = document.createElement("button");
       todoPriority.classList.add("todo-priority");
       todoPriority.textContent = item.getPriority();
       todoContainer.appendChild(todoPriority);
     });
-    const addTodoIcon = document.createElement("button");
-    addTodoIcon.id = "add-todo";
-    addTodoIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 2rem;">add_box</span>';
-    display.appendChild(addTodoIcon);
   }
   function openModal() {
     // Get the modal
     var modal = document.getElementById("myModal");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
     // When the user clicks on the button, open the modal
     modal.style.display = "block";
-
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       modal.style.display = "none";
     };
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
       if (event.target == modal) {
@@ -222,11 +218,16 @@ const domFunctions = (name, date) => {
       }
     };
   }
+  function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
   return {
     nav,
     buildBase,
     renderTodoList,
     openModal,
+    closeModal,
   };
 };
 

@@ -51,6 +51,10 @@ body {
   height: 100vh;
 }
 
+.todo-holder {
+  width: 100%;
+}
+
 .nav-filters {
   display: flex;
   width: 100%;

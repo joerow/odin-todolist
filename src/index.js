@@ -16,7 +16,6 @@ refreshListeners();
 
 function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
-  console.log(todoChecks);
   todoChecks.forEach((element) => {
     element.addEventListener("click", (e) =>
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index)
@@ -24,6 +23,26 @@ function refreshListeners() {
   });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
+  //TODO this is not the way to submit the form correctly. need to rework this.
+  let newSubmit = document.querySelector("#new-submit");
+  let newTitle = document.querySelector("#new-title");
+  let newDescription = document.querySelector("#new-description");
+  let newDue = document.querySelector("#new-due");
+
+  newSubmit.onclick = function () {
+    listHandler.newTodo(
+      newTitle.value,
+      newDescription,
+      newDue.value,
+      "High Priority",
+      "",
+      false
+    );
+    console.log(listHandler.getList());
+    domHandler.renderTodoList(listHandler.getList());
+    domHandler.closeModal();
+    refreshListeners();
+  };
 }
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API

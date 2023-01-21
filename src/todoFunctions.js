@@ -62,7 +62,26 @@ const todoFunctions = () => {
       console.log("archive status set to true");
     }
   };
-  return { getList, toggleArchiveStatus };
+  const newTodo = (
+    title,
+    description,
+    dueDate,
+    priority,
+    project,
+    archiveStatus
+  ) => {
+    let newtitle = todo(
+      title,
+      description,
+      dueDate,
+      priority,
+      project,
+      archiveStatus
+    );
+    todoList.push(newtitle);
+  };
+
+  return { getList, toggleArchiveStatus, newTodo };
 };
 export { todo, todoFunctions };
 
