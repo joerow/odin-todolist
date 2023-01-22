@@ -23,7 +23,7 @@ function refreshListeners() {
   });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
-  //TODO this is not the way to submit the form correctly. need to rework this.
+  //TODO this is maybe not the way to submit the form correctly. need to rework this.
   let newSubmit = document.querySelector("#new-submit");
   let newTitle = document.querySelector("#new-title");
   let newDescription = document.querySelector("#new-description");
@@ -48,9 +48,9 @@ function refreshListeners() {
       "",
       false
     );
-    console.log(listHandler.getList());
     domHandler.renderTodoList(listHandler.getList());
     domHandler.closeModal();
+    populateStorage();
     refreshListeners();
   };
 }
@@ -82,7 +82,20 @@ function storageAvailable(type) {
     );
   }
 }
-console.log("Session storage available: " + storageAvailable("sessionStorage"));
-console.log("Local storage available: " + storageAvailable("localStorage"));
+//console.log("Session storage available: " + storageAvailable("sessionStorage"));
+//console.log("Local storage available: " + storageAvailable("localStorage"));
 
 //some example todos
+function populateStorage() {
+  let x = [];
+  for (let index = 0; index < listHandler.getList().length; index++) {
+    x.push(listHandler.getList()[index].getAllDetails());
+  }
+  localStorage.setItem("list", JSON.stringify(x));
+}
+populateStorage();
+
+function retreiveStorage() {
+  let newobjectslist = JSON.parse(window.localStorage.getItem("list"));
+  //console.log(newobjectslist[3].todoTitle);
+}

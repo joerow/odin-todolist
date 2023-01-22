@@ -20,6 +20,16 @@ const todo = (
   const getPriority = () => todoPriority;
   const getProject = () => todoProject;
   const getArchiveStatus = () => todoArchiveStatus;
+  const getAllDetails = () => {
+    return {
+      todoTitle,
+      todoDescription,
+      todoDue,
+      todoPriority,
+      todoProject,
+      todoArchiveStatus,
+    };
+  };
   const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
   function newTodo() {}
   return {
@@ -31,6 +41,7 @@ const todo = (
     getProject,
     getArchiveStatus,
     setArchiveStatus,
+    getAllDetails,
   };
 };
 const todoFunctions = () => {
@@ -50,6 +61,11 @@ const todoFunctions = () => {
     "Low Priority"
   );
   todoList.push(testy, testy2);
+  //TODO make the retreive storage function convert the JSON back into todos
+  const retreiveStorage = () => {
+    let storagelist = JSON.parse(window.localStorage.getItem("list"));
+    //console.log(newobjectslist[3].todoTitle);
+  };
   const getList = () => {
     return todoList;
   };

@@ -58,10 +58,14 @@ button:focus {
   flex: 1;
   align-items: center;
   height: 100vh;
+  width: 100%;
 }
 
 .todo-holder {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: 5px;
 }
 
 .nav-filters {
@@ -101,7 +105,6 @@ button:focus {
   grid-template: auto auto / 1.8rem repeat(3, 1fr);
   justify-items: flex-start;
   align-items: flex-start;
-  width: 100%;
   padding: 10px;
   border: 1px solid #000000;
 }
