@@ -28,13 +28,23 @@ function refreshListeners() {
   let newTitle = document.querySelector("#new-title");
   let newDescription = document.querySelector("#new-description");
   let newDue = document.querySelector("#new-due");
+  function getPrioritySelected() {
+    var checkRadio = document.querySelector(
+      'input[name="new-priority"]:checked'
+    );
+    if (checkRadio != null) {
+      return checkRadio.id;
+    } else {
+      return "No one selected";
+    }
+  }
 
   newSubmit.onclick = function () {
     listHandler.newTodo(
       newTitle.value,
       newDescription,
       newDue.value,
-      "High Priority",
+      getPrioritySelected(),
       "",
       false
     );

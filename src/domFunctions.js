@@ -1,115 +1,150 @@
 const domFunctions = (name, date) => {
+  function buildElement(elementType, id, classList, innerHTML) {
+    const element = document.createElement(elementType);
+    if (id === undefined) {
+      id = "";
+    }
+    if (classList === undefined) {
+      classList = "";
+    }
+    if (innerHTML === undefined) {
+      innerHTML = "";
+    }
+    element.id = id;
+    element.classList.add(...classList);
+    element.setHTML(innerHTML);
+    return element;
+  }
   function nav() {
-    const nav = document.createElement("div");
-    nav.classList.add("nav");
-
+    const nav = buildElement("div", "", ["nav"]);
     // top section including profile
-    const navTop = document.createElement("div");
-    navTop.classList.add("nav-top");
-
+    const navTop = buildElement("div", "", ["nav-top"]);
     //profile section
-    const navProfile = document.createElement("div");
-    navProfile.classList.add("nav-profile");
+    const navProfile = buildElement("div", "", ["nav-profile"]);
     navTop.append(navProfile);
-
     //profile icon
-    const profileIcon = document.createElement("div");
-    profileIcon.classList.add("profile-icon");
-    profileIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">account_circle</span>';
+    const profileIcon = buildElement(
+      "button",
+      "",
+      ["profile-icon"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">account_circle</span>'
+    );
     navProfile.appendChild(profileIcon);
-
     //profile name
-    const profileName = document.createElement("div");
-    profileName.classList.add("profile-name");
-    profileName.innerHTML = "Profile Name";
+    const profileName = buildElement(
+      "div",
+      "",
+      ["profile-name"],
+      "Profile Name"
+    );
     navProfile.appendChild(profileName);
-
     //shrink nav menu icon
-    const shrinkNav = document.createElement("div");
-    shrinkNav.classList.add("shrink-nav");
-    shrinkNav.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">chevron_left</span>';
+    const shrinkNav = buildElement(
+      "button",
+      "",
+      ["shrink-nav"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">chevron_left</span>'
+    );
     navTop.appendChild(shrinkNav);
     nav.append(navTop);
-
-    const navSeparator1 = document.createElement("div");
-    navSeparator1.classList.add("nav-separator");
+    const navSeparator1 = buildElement("div", "", ["nav-separator"]);
     nav.append(navSeparator1);
-
-    const navFilters = document.createElement("div");
-    navFilters.classList.add("nav-filters");
+    const navFilters = buildElement("div", "", ["nav-filters"]);
     nav.append(navFilters);
-
-    const navFilterEverything = document.createElement("div");
-    navFilterEverything.classList.add("nav-filter", "nf-everything");
-    const navFilterEverythingIcon = document.createElement("div");
-    navFilterEverythingIcon.classList.add("nf-icon");
-    navFilterEverythingIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">all_inbox</span>';
-    const navFilterEverythingLabel = document.createElement("div");
-    navFilterEverythingLabel.classList.add("nf-Label");
-    navFilterEverythingLabel.innerText = "Everything";
+    const navFilterEverything = buildElement("button", "", [
+      "nav-filter",
+      "nf-everything",
+    ]);
+    const navFilterEverythingIcon = buildElement(
+      "div",
+      "",
+      ["nf-icon"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">all_inbox</span>'
+    );
     navFilterEverything.append(navFilterEverythingIcon);
+    const navFilterEverythingLabel = buildElement(
+      "div",
+      "",
+      ["nf-label"],
+      "Everything"
+    );
     navFilterEverything.append(navFilterEverythingLabel);
     navFilters.append(navFilterEverything);
-
-    const navFilterToday = document.createElement("div");
-    navFilterToday.classList.add("nav-filter", "nf-today");
-    const navFilterTodayIcon = document.createElement("div");
-    navFilterTodayIcon.classList.add("nf-icon");
-    navFilterTodayIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">today</span>';
-    const navFilterTodayLabel = document.createElement("div");
-    navFilterTodayLabel.classList.add("nf-Label");
-    navFilterTodayLabel.innerText = "Today";
+    const navFilterToday = buildElement("button", "", [
+      "nav-filter",
+      "nf-today",
+    ]);
+    const navFilterTodayIcon = buildElement(
+      "div",
+      "",
+      ["nf-icon"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">today</span>'
+    );
     navFilterToday.append(navFilterTodayIcon);
+    const navFilterTodayLabel = buildElement("div", "", ["nf-label"], "Today");
     navFilterToday.append(navFilterTodayLabel);
     navFilters.append(navFilterToday);
 
-    const navFilterUpcoming = document.createElement("div");
-    navFilterUpcoming.classList.add("nav-filter", "nf-upcoming");
-    const navFilterUpcomingIcon = document.createElement("div");
-    navFilterUpcomingIcon.classList.add("nf-icon");
-    navFilterUpcomingIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">event_upcoming</span>';
-    const navFilterUpcomingLabel = document.createElement("div");
-    navFilterUpcomingLabel.classList.add("nf-Label");
-    navFilterUpcomingLabel.innerText = "Upcoming";
+    const navFilterUpcoming = buildElement("button", "", [
+      "nav-filter",
+      "nf-upcoming",
+    ]);
+    const navFilterUpcomingIcon = buildElement(
+      "div",
+      "",
+      ["nf-icon"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">event_upcoming</span>'
+    );
     navFilterUpcoming.append(navFilterUpcomingIcon);
+    const navFilterUpcomingLabel = buildElement(
+      "div",
+      "",
+      ["nf-label"],
+      "Upcoming"
+    );
     navFilterUpcoming.append(navFilterUpcomingLabel);
     navFilters.append(navFilterUpcoming);
 
-    const navFilterArchive = document.createElement("div");
-    navFilterArchive.classList.add("nav-filter", "nf-archive");
-    const navFilterArchiveIcon = document.createElement("div");
-    navFilterArchiveIcon.classList.add("nf-icon");
-    navFilterArchiveIcon.innerHTML =
-      '<span class="material-symbols-outlined" style="font-size: 48px;">folder_open</span>';
-    const navFilterArchiveLabel = document.createElement("div");
-    navFilterArchiveLabel.classList.add("nf-Label");
-    navFilterArchiveLabel.innerText = "Archive";
+    const navFilterArchive = buildElement(
+      "button",
+      "",
+      ["nav-filter", "nf-archive"],
+      ""
+    );
+    const navFilterArchiveIcon = buildElement(
+      "div",
+      "",
+      ["nf-icon"],
+      '<span class="material-symbols-outlined" style="font-size: 48px;">folder_open</span>'
+    );
+    const navFilterArchiveLabel = buildElement(
+      "div",
+      "",
+      ["nf-label"],
+      "Archive"
+    );
     navFilterArchive.append(navFilterArchiveIcon);
     navFilterArchive.append(navFilterArchiveLabel);
     navFilters.append(navFilterArchive);
 
-    const navSeparator2 = document.createElement("div");
-    navSeparator2.classList.add("nav-separator");
+    const navSeparator2 = buildElement("div", "", ["nav-separator"], "");
     nav.append(navSeparator2);
 
     //TODO load projects here
-    const navProjects = document.createElement("div");
-    navProjects.classList.add("nav-projects");
-    navProjects.innerText = "navProjects";
+    const navProjects = buildElement(
+      "div",
+      "",
+      ["nav-projects"],
+      "Nav Projects"
+    );
     nav.append(navProjects);
 
     // create the footer
-    const footer = document.createElement("div");
-    footer.classList.add("footer");
+    const footer = buildElement("div", "", ["footer"], "Footer");
     nav.append(footer);
-    footer.innerHTML = "footer";
     return nav;
   }
+
   function buildBase() {
     // create the grid contianer
     const element = document.createElement("div");
@@ -153,9 +188,9 @@ const domFunctions = (name, date) => {
       '<label for="newTitle">Title<input type="text" name="newTitle" id="new-title" required /></label>' +
       '<label for="newDescription">Description<input type="text" name="new-description" id="new-description" required /></label>' +
       '<label for="new-due">Due:<input type="date" name="new-due" id="new-due" required /></label>' +
-      '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="high" /></label>' +
-      '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="medium" checked="checked" /></label>' +
-      '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="low" /></label>' +
+      '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="high" class="new-priority"/></label>' +
+      '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="medium" checked="true"  class="new-priority"/></label>' +
+      '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="low"  class="new-priority"/></label>' +
       '<label for="submit"><input type="button" value="Submit" id="new-submit" /></label>' +
       "</form>";
     modalContent.append(modalForm);

@@ -4,6 +4,15 @@ body {
   padding: 0;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  outline: orange 5px auto;
+}
 .nav {
   padding: 10px 10px 0px 10px;
   display: flex;
