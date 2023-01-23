@@ -173,7 +173,7 @@ const domFunctions = (name, date) => {
     main.appendChild(addTodoIcon);
     document.body.append(element);
 
-    //create the model - hidden by default
+    //create the modal - hidden by default
     const modal = buildElement("div", "myModal", ["modal"]);
 
     const modalContent = buildElement("div", "", ["modal-content"]);
@@ -205,7 +205,7 @@ const domFunctions = (name, date) => {
     display.innerHTML = "";
     todoList.forEach((item, index) => {
       //create the container for the item
-      const todoContainer = buildElement("div", "", ["todo-item"]);
+      const todoContainer = buildElement("button", "", ["todo-item"]);
       todoContainer.dataset.index = index;
       display.append(todoContainer);
       //add the checkbox icon
