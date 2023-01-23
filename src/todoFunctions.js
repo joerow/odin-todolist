@@ -44,23 +44,45 @@ const todo = (
     getAllDetails,
   };
 };
-const todoFunctions = () => {
+const todoFunctions = (loadedList) => {
   let todoList = [];
-  let testy = todo(
-    "This is a test title",
-    "This is a todo description",
-    "07/04/2023",
-    "High Priority",
-    "",
-    false
-  );
-  let testy2 = todo(
-    "Here is another todo item",
-    "This is a todo description",
-    "12/02/2021",
-    "Low Priority"
-  );
-  todoList.push(testy, testy2);
+  console.log(loadedList);
+  const loadDefaults = () => {
+    let testy = todo(
+      "This is a test title",
+      "This is a todo description",
+      "07/04/2023",
+      "High Priority",
+      "",
+      false
+    );
+    let testy2 = todo(
+      "Here is another todo item",
+      "This is a todo description",
+      "12/02/2021",
+      "Low Priority"
+    );
+    todoList.push(testy, testy2);
+    console.log("populated with defaults");
+  };
+  if (loadedList === undefined) {
+    console.log("no list found so loading defaults");
+    loadDefaults();
+  } else {
+    for (let index = 0; index < loadedList.length; index++) {
+      let item = todo(
+        loadedList[index].todoTitle,
+        loadedList[index].todoDescription,
+        loadedList[index].todoDue,
+        loadedList[index].todoPriority,
+        loadedList[index].todoProject,
+        loadedList[index].todoArchiveStatus
+      );
+      todoList.push(item);
+    }
+    localStorage.setItem("list", JSON.stringify(todoList));
+  }
+
   //TODO make the retreive storage function convert the JSON back into todos
   const retreiveStorage = () => {
     let storagelist = JSON.parse(window.localStorage.getItem("list"));

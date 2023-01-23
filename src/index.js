@@ -3,7 +3,16 @@ import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 
 const domHandler = domFunctions();
-const listHandler = todoFunctions();
+
+function retreiveStorage() {
+  let loadedList = JSON.parse(window.localStorage.getItem("list"));
+  //console.log(newobjectslist[3].todoTitle);
+  if (loadedList != null) {
+    console.log("List retreived from storage. Length: " + loadedList.length);
+    return loadedList;
+  }
+}
+const listHandler = todoFunctions(retreiveStorage());
 domHandler.buildBase();
 domHandler.renderTodoList(listHandler.getList());
 refreshListeners();
@@ -13,6 +22,14 @@ refreshListeners();
 //TODO implement localstorage to save and retreive the todo items
 //TODO refactor the tasks so that they are included as part of projects
 //TODO make the nav filters filter through the projects to only show todo's with the correct properties e.g. date
+function populateStorage() {
+  let x = [];
+  for (let index = 0; index < listHandler.getList().length; index++) {
+    x.push(listHandler.getList()[index].getAllDetails());
+  }
+  localStorage.setItem("list", JSON.stringify(x));
+  console.log("saved to storage");
+}
 
 function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
@@ -86,16 +103,3 @@ function storageAvailable(type) {
 //console.log("Local storage available: " + storageAvailable("localStorage"));
 
 //some example todos
-function populateStorage() {
-  let x = [];
-  for (let index = 0; index < listHandler.getList().length; index++) {
-    x.push(listHandler.getList()[index].getAllDetails());
-  }
-  localStorage.setItem("list", JSON.stringify(x));
-}
-populateStorage();
-
-function retreiveStorage() {
-  let newobjectslist = JSON.parse(window.localStorage.getItem("list"));
-  //console.log(newobjectslist[3].todoTitle);
-}
