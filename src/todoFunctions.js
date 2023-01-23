@@ -60,7 +60,9 @@ const todoFunctions = (loadedList) => {
       "Here is another todo item",
       "This is a todo description",
       "12/02/2021",
-      "Low Priority"
+      "Low Priority",
+      "",
+      true
     );
     todoList.push(testy, testy2);
     console.log("populated with defaults");
@@ -88,11 +90,6 @@ const todoFunctions = (loadedList) => {
     localStorage.setItem("list", JSON.stringify(x));
   }
 
-  //TODO make the retreive storage function convert the JSON back into todos
-  const retreiveStorage = () => {
-    let storagelist = JSON.parse(window.localStorage.getItem("list"));
-    //console.log(newobjectslist[3].todoTitle);
-  };
   const getList = () => {
     return todoList;
   };
