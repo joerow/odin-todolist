@@ -59,7 +59,7 @@ function refreshListeners() {
   newSubmit.onclick = function () {
     listHandler.newTodo(
       newTitle.value,
-      newDescription,
+      newDescription.value,
       newDue.value,
       getPrioritySelected(),
       "",

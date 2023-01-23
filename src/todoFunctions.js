@@ -80,7 +80,12 @@ const todoFunctions = (loadedList) => {
       );
       todoList.push(item);
     }
-    localStorage.setItem("list", JSON.stringify(todoList));
+    console.log("current list" + todoList);
+    let x = [];
+    for (let index = 0; index < todoList.length; index++) {
+      x.push(todoList[index].getAllDetails());
+    }
+    localStorage.setItem("list", JSON.stringify(x));
   }
 
   //TODO make the retreive storage function convert the JSON back into todos
