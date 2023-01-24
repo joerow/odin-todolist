@@ -7,7 +7,6 @@ const storageFunctions = () => {
     for (let index = 0; index < unsavedList.length; index++) {
       x.push(unsavedList[index].getAllDetails());
     }
-    console.log(JSON.stringify(x));
     window.localStorage.setItem("list", JSON.stringify(x));
     console.log("saved to storage");
   }

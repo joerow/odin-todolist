@@ -36,7 +36,7 @@ function refreshListeners() {
       'input[name="new-priority"]:checked'
     );
     if (checkRadio != null) {
-      return checkRadio.id;
+      return checkRadio.parentNode.textContent;
     } else {
       return "No one selected";
     }
@@ -54,7 +54,7 @@ function refreshListeners() {
     domHandler.renderTodoList(listHandler.getList());
     domHandler.closeModal();
     console.log(listHandler.getList());
-    storageHandler.populateStorage();
+    storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
 }
