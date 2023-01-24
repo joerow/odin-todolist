@@ -1,35 +1,21 @@
 import "./style.css";
 import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
+import { storageFunctions } from "./storageFunctions";
 
 const domHandler = domFunctions();
+const storageHandler = storageFunctions();
 
-function retreiveStorage() {
-  let loadedList = JSON.parse(window.localStorage.getItem("list"));
-  //console.log(newobjectslist[3].todoTitle);
-  if (loadedList != null) {
-    console.log("List retreived from storage. Length: " + loadedList.length);
-    return loadedList;
-  }
-}
-const listHandler = todoFunctions(retreiveStorage());
+const listHandler = todoFunctions(storageHandler.retreiveStorage());
+//storageHandler.populateStorage();
 domHandler.buildBase();
 domHandler.renderTodoList(listHandler.getList());
 refreshListeners();
 //TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
 //TODO add  a module for projects
-//TODO Everything clickable should be a button
 //TODO implement localstorage to save and retreive the todo items
 //TODO refactor the tasks so that they are included as part of projects
 //TODO make the nav filters filter through the projects to only show todo's with the correct properties e.g. date
-function populateStorage() {
-  let x = [];
-  for (let index = 0; index < listHandler.getList().length; index++) {
-    x.push(listHandler.getList()[index].getAllDetails());
-  }
-  localStorage.setItem("list", JSON.stringify(x));
-  console.log("saved to storage");
-}
 
 function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
@@ -50,7 +36,7 @@ function refreshListeners() {
       'input[name="new-priority"]:checked'
     );
     if (checkRadio != null) {
-      return checkRadio.id;
+      return checkRadio.parentNode.textContent;
     } else {
       return "No one selected";
     }
@@ -67,7 +53,8 @@ function refreshListeners() {
     );
     domHandler.renderTodoList(listHandler.getList());
     domHandler.closeModal();
-    populateStorage();
+    console.log(listHandler.getList());
+    storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
 }
