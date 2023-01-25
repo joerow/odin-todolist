@@ -3,10 +3,9 @@ import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 import { storageFunctions } from "./storageFunctions";
 
-const domHandler = domFunctions();
 const storageHandler = storageFunctions();
-
 const listHandler = todoFunctions(storageHandler.retreiveStorage());
+const domHandler = domFunctions();
 //storageHandler.populateStorage();
 domHandler.buildBase();
 domHandler.renderTodoList(listHandler.getList());
@@ -64,17 +63,19 @@ function refreshListeners() {
 
   let archiveView = document.querySelector("#archiveView");
   archiveView.onclick = function () {
+    let pageTitle = document.getElementById("page-title");
+    pageTitle.textContent = "Archive";
     domHandler.changeView(archiveView);
-    domHandler.renderTodoList(
-      listHandler.getList().filter(listHandler.filterArchived)
-    );
+    domHandler.renderTodoList(listHandler.getList("archived"));
     refreshListeners();
   };
   let everythingView = document.querySelector("#everythingView");
   everythingView.onclick = function () {
+    let pageTitle = document.getElementById("page-title");
+    pageTitle.textContent = "Everything";
     domHandler.changeView(everythingView);
     domHandler.renderTodoList(
-      listHandler.getList().filter(listHandler.filterUnArchived)
+      listHandler.getList(listHandler.getList("unarchived"))
     );
     refreshListeners();
   };

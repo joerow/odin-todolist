@@ -105,8 +105,17 @@ const todoFunctions = (loadedList) => {
     }
   };
 
-  const getList = () => {
-    return todoList;
+  const getList = (filter) => {
+    if (filter === "archived") {
+      console.log("trying to filter list - archived");
+      return todoList.filter(filterArchived);
+    } else if (filter === "unarchived") {
+      console.log("trying to filter list - unarchived");
+      return todoList.filter(filterArchived);
+    } else {
+      console.log("list didn't filter here");
+      return todoList;
+    }
   };
   const toggleArchiveStatus = (index) => {
     if (todoList[index].getArchiveStatus()) {

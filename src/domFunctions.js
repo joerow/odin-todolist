@@ -1,4 +1,6 @@
 const domFunctions = (name, date) => {
+  let currentView = document.getElementsByClassName("activeView")[0];
+  console.log("test");
   function buildElement(elementType, id, classList, innerHTML) {
     const element = document.createElement(elementType);
     if (id === undefined) {
@@ -131,7 +133,6 @@ const domFunctions = (name, date) => {
     const navSeparator2 = buildElement("div", "", ["nav-separator"], "");
     nav.append(navSeparator2);
 
-    //TODO load projects here
     const navProjects = buildElement(
       "div",
       "",
@@ -161,7 +162,7 @@ const domFunctions = (name, date) => {
     // create the main area
     const main = buildElement("div", "display", ["main-area"]);
     element.append(main);
-    const title = buildElement("h1", "", [], "Everything");
+    const title = buildElement("h1", "page-title", [], "Everything");
     main.append(title);
     const todoDisplay = buildElement("div", "display-todos", ["todo-holder"]);
     main.appendChild(todoDisplay);
@@ -211,7 +212,7 @@ const domFunctions = (name, date) => {
       display.append(todoContainer);
       //add the checkbox icon
       let todoCheck = null;
-      if (item.getArchiveStatus() === true) {
+      if (item.getArchiveStatus() === true && currentView != "everythingView") {
         todoCheck = buildElement(
           "button",
           "",
@@ -273,7 +274,7 @@ const domFunctions = (name, date) => {
   }
   //TODO fix loading of whole list on checking a todo box
   function changeView(newView) {
-    let currentView = document.getElementsByClassName("activeView")[0];
+    currentView = document.getElementsByClassName("activeView")[0];
     currentView.classList.remove("activeView");
     newView.classList.add("activeView");
   }
