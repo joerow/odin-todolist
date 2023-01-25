@@ -51,7 +51,7 @@ const todoFunctions = (loadedList) => {
     let testy = todo(
       "This is a test title",
       "This is a todo description",
-      "07/04/2023",
+      "2023-01-18",
       "High Priority",
       "",
       false
@@ -59,7 +59,7 @@ const todoFunctions = (loadedList) => {
     let testy2 = todo(
       "Here is another todo item",
       "This is a todo description",
-      "12/02/2021",
+      "2023-01-18",
       "Low Priority",
       "",
       true

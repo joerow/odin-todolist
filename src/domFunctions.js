@@ -199,29 +199,32 @@ const domFunctions = (name, date) => {
     main.append(modal);
     return;
   }
-  function filterPriority(item) {
-    if (item.getPriority() === "High Priority") {
-      return true;
-    }
-    return false;
-  }
 
-  function renderTodoList(todoList, filter) {
+  function renderTodoList(todoList) {
     let display = document.getElementById("display-todos");
     display.innerHTML = "";
-    console.log(todoList.filter(filterPriority));
     todoList.forEach((item, index) => {
       //create the container for the item
       const todoContainer = buildElement("button", "", ["todo-item"]);
       todoContainer.dataset.index = index;
       display.append(todoContainer);
       //add the checkbox icon
-      const todoCheck = buildElement(
-        "button",
-        "",
-        ["todo-check"],
-        '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box_outline_blank</span>'
-      );
+      let todoCheck = null;
+      if (item.getArchiveStatus() === true) {
+        todoCheck = buildElement(
+          "button",
+          "",
+          ["todo-check"],
+          '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box</span>'
+        );
+      } else {
+        todoCheck = buildElement(
+          "button",
+          "",
+          ["todo-check"],
+          '<span class="material-symbols-outlined"style="font-size: 1.5rem;">check_box_outline_blank</span>'
+        );
+      }
       todoContainer.append(todoCheck);
       // add the title */
       const todoTitle = buildElement(

@@ -20,9 +20,11 @@ refreshListeners();
 function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
   todoChecks.forEach((element) => {
-    element.addEventListener("click", (e) =>
-      listHandler.toggleArchiveStatus(element.parentElement.dataset.index)
-    );
+    element.addEventListener("click", function funct() {
+      listHandler.toggleArchiveStatus(element.parentElement.dataset.index),
+        domHandler.renderTodoList(listHandler.getList());
+      refreshListeners();
+    });
   });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
