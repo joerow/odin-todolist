@@ -199,10 +199,17 @@ const domFunctions = (name, date) => {
     main.append(modal);
     return;
   }
+  function filterPriority(item) {
+    if (item.getPriority() === "High Priority") {
+      return true;
+    }
+    return false;
+  }
 
-  function renderTodoList(todoList) {
+  function renderTodoList(todoList, filter) {
     let display = document.getElementById("display-todos");
     display.innerHTML = "";
+    console.log(todoList.filter(filterPriority));
     todoList.forEach((item, index) => {
       //create the container for the item
       const todoContainer = buildElement("button", "", ["todo-item"]);
