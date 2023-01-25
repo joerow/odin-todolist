@@ -90,6 +90,21 @@ const todoFunctions = (loadedList) => {
     localStorage.setItem("list", JSON.stringify(x));
   }
 
+  const filterArchived = (item) => {
+    if (item.getArchiveStatus() === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const filterUnArchived = (item) => {
+    if (item.getArchiveStatus() === false) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const getList = () => {
     return todoList;
   };
@@ -121,7 +136,13 @@ const todoFunctions = (loadedList) => {
     todoList.push(newtitle);
   };
 
-  return { getList, toggleArchiveStatus, newTodo };
+  return {
+    getList,
+    toggleArchiveStatus,
+    newTodo,
+    filterArchived,
+    filterUnArchived,
+  };
 };
 export { todo, todoFunctions };
 

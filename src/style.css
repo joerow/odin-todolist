@@ -88,7 +88,6 @@ button:focus {
 }
 
 .nf-everything {
-  background-color: rgb(202, 202, 202);
   border-radius: 5px;
 }
 
@@ -188,4 +187,8 @@ button:focus {
 #new-todo {
   display: grid;
   gap: 5px;
+}
+
+.activeView {
+  background-color: rgb(202, 202, 202);
 }

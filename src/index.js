@@ -23,6 +23,8 @@ function refreshListeners() {
     element.addEventListener("click", function funct() {
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index),
         domHandler.renderTodoList(listHandler.getList());
+      storageHandler.populateStorage(listHandler.getList());
+
       refreshListeners();
     });
   });
@@ -59,8 +61,24 @@ function refreshListeners() {
     storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
-}
 
+  let archiveView = document.querySelector("#archiveView");
+  archiveView.onclick = function () {
+    domHandler.changeView(archiveView);
+    domHandler.renderTodoList(
+      listHandler.getList().filter(listHandler.filterArchived)
+    );
+    refreshListeners();
+  };
+  let everythingView = document.querySelector("#everythingView");
+  everythingView.onclick = function () {
+    domHandler.changeView(everythingView);
+    domHandler.renderTodoList(
+      listHandler.getList().filter(listHandler.filterUnArchived)
+    );
+    refreshListeners();
+  };
+}
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function storageAvailable(type) {
   let storage;

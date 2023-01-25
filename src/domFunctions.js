@@ -51,9 +51,10 @@ const domFunctions = (name, date) => {
     nav.append(navSeparator1);
     const navFilters = buildElement("div", "", ["nav-filters"]);
     nav.append(navFilters);
-    const navFilterEverything = buildElement("button", "", [
+    const navFilterEverything = buildElement("button", "everythingView", [
       "nav-filter",
       "nf-everything",
+      "activeView",
     ]);
     const navFilterEverythingIcon = buildElement(
       "div",
@@ -64,13 +65,13 @@ const domFunctions = (name, date) => {
     navFilterEverything.append(navFilterEverythingIcon);
     const navFilterEverythingLabel = buildElement(
       "div",
-      "",
+      "everything",
       ["nf-label"],
       "Everything"
     );
     navFilterEverything.append(navFilterEverythingLabel);
     navFilters.append(navFilterEverything);
-    const navFilterToday = buildElement("button", "", [
+    const navFilterToday = buildElement("button", "todayView", [
       "nav-filter",
       "nf-today",
     ]);
@@ -85,7 +86,7 @@ const domFunctions = (name, date) => {
     navFilterToday.append(navFilterTodayLabel);
     navFilters.append(navFilterToday);
 
-    const navFilterUpcoming = buildElement("button", "", [
+    const navFilterUpcoming = buildElement("button", "upcomingView", [
       "nav-filter",
       "nf-upcoming",
     ]);
@@ -107,7 +108,7 @@ const domFunctions = (name, date) => {
 
     const navFilterArchive = buildElement(
       "button",
-      "",
+      "archiveView",
       ["nav-filter", "nf-archive"],
       ""
     );
@@ -270,12 +271,19 @@ const domFunctions = (name, date) => {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
+  //TODO fix loading of whole list on checking a todo box
+  function changeView(newView) {
+    let currentView = document.getElementsByClassName("activeView")[0];
+    currentView.classList.remove("activeView");
+    newView.classList.add("activeView");
+  }
   return {
     nav,
     buildBase,
     renderTodoList,
     openModal,
     closeModal,
+    changeView,
   };
 };
 
