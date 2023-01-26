@@ -14,6 +14,17 @@ const todo = (
   let todoPriority = priority;
   let todoProject = project;
   let todoArchiveStatus = archiveStatus;
+  let uid = null;
+  const setUid = function () {
+    if (uid === null) {
+      uid = Date.now().toString(36) + Math.random().toString(36).slice(2);
+      return uid;
+    } else {
+      return uid;
+    }
+  };
+  setUid();
+  const getUid = () => uid;
   const getTitle = () => todoTitle;
   const getDescription = () => todoDescription;
   const getDue = () => todoDue;
@@ -28,6 +39,7 @@ const todo = (
       todoPriority,
       todoProject,
       todoArchiveStatus,
+      uid,
     };
   };
   const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
@@ -44,6 +56,7 @@ const todo = (
     getArchiveStatus,
     setArchiveStatus,
     getAllDetails,
+    getUid,
   };
 };
 const todoFunctions = (loadedList) => {
@@ -56,7 +69,8 @@ const todoFunctions = (loadedList) => {
       "2023-01-18",
       "High",
       "",
-      false
+      false,
+      "1"
     );
     let testy2 = todo(
       "Here is another todo item",
@@ -64,7 +78,8 @@ const todoFunctions = (loadedList) => {
       "2023-01-18",
       "Low",
       "",
-      true
+      true,
+      "2"
     );
     todoList.push(testy, testy2);
     console.log("populated with defaults");
@@ -80,7 +95,8 @@ const todoFunctions = (loadedList) => {
         loadedList[index].todoDue,
         loadedList[index].todoPriority,
         loadedList[index].todoProject,
-        loadedList[index].todoArchiveStatus
+        loadedList[index].todoArchiveStatus,
+        loadedList[index].uid
       );
       todoList.push(item);
     }
@@ -106,6 +122,13 @@ const todoFunctions = (loadedList) => {
       return false;
     }
   };
+  /*   const findUid = (uid) => {
+    if (getUid() === uid) {
+      return true;
+    } else {
+      return false;
+    }
+  }; */
 
   const getList = (filter) => {
     if (filter === "archived") {
@@ -119,24 +142,31 @@ const todoFunctions = (loadedList) => {
       return todoList;
     }
   };
-  const toggleArchiveStatus = (index) => {
-    if (todoList[index].getArchiveStatus()) {
-      todoList[index].setArchiveStatus(false);
+  const toggleArchiveStatus = (uid) => {
+    const todoitem = todoList.find((obj) => {
+      return obj.getUid() === uid;
+    });
+    console.log("todoitem: " + todoitem);
+    if (todoitem.getArchiveStatus() === true) {
+      todoitem.setArchiveStatus(false);
       console.log("archive status set to false");
     } else {
-      todoList[index].setArchiveStatus(true);
+      todoitem.setArchiveStatus(true);
       console.log("archive status set to true");
     }
   };
-  const togglePriority = (index) => {
-    if (todoList[index].getPriority() === "High") {
-      todoList[index].setPriority("Medium");
+  const togglePriority = (uid) => {
+    const todoitem = todoList.find((obj) => {
+      return obj.getUid() === uid;
+    });
+    if (todoitem.getPriority() === "High") {
+      todoitem.setPriority("Medium");
       console.log("Priority set to medium");
-    } else if (todoList[index].getPriority() === "Medium") {
-      todoList[index].setPriority("Low");
+    } else if (todoitem.getPriority() === "Medium") {
+      todoitem.setPriority("Low");
       console.log("Priority set to Low");
     } else {
-      todoList[index].setPriority("High");
+      todoitem.setPriority("High");
       console.log("Priority set to High");
     }
   };

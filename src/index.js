@@ -48,7 +48,7 @@ function refreshListeners() {
       'input[name="new-priority"]:checked'
     );
     if (checkRadio != null) {
-      return checkRadio.parentNode.textContent;
+      return checkRadio.id;
     } else {
       return "No one selected";
     }

@@ -188,9 +188,9 @@ const domFunctions = (name, date) => {
         '<label for="newTitle">Title<input type="text" name="newTitle" id="new-title" required /></label>' +
         '<label for="newDescription">Description<input type="text" name="new-description" id="new-description" required /></label>' +
         '<label for="new-due">Due:<input type="date" name="new-due" id="new-due" required /></label>' +
-        '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="high" class="new-priority"/></label>' +
-        '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="medium" checked="true"  class="new-priority"/></label>' +
-        '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="low"  class="new-priority"/></label>' +
+        '<label for="high-priority">High Priority<input type="radio" name="new-priority" id="High" class="new-priority"/></label>' +
+        '<label for="medium-priority">Medium Priority<input type="radio" name="new-priority" id="Medium" checked="true"  class="new-priority"/></label>' +
+        '<label for="low-priority">Low Priority<input type="radio" name="new-priority" id="Low"  class="new-priority"/></label>' +
         '<label for="submit"><input type="button" value="Submit" id="new-submit" /></label>' +
         "</form>"
     );
@@ -208,7 +208,7 @@ const domFunctions = (name, date) => {
     todoList.forEach((item, index) => {
       //create the container for the item
       const todoContainer = buildElement("button", "", ["todo-item"]);
-      todoContainer.dataset.index = index;
+      todoContainer.dataset.index = item.getUid();
       display.append(todoContainer);
       //add the checkbox icon
       let todoCheck = null;
