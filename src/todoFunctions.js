@@ -131,10 +131,10 @@ const todoFunctions = (loadedList) => {
   }; */
 
   const getList = (filter) => {
-    if (filter === "archived") {
+    if (filter === "archiveView") {
       console.log("trying to filter list - archived");
       return todoList.filter(filterArchived);
-    } else if (filter === "unarchived") {
+    } else if (filter === "everythingView") {
       console.log("trying to filter list - unarchived");
       return todoList.filter(filterUnArchived);
     } else {

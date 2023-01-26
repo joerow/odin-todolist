@@ -8,7 +8,7 @@ const listHandler = todoFunctions(storageHandler.retreiveStorage());
 const domHandler = domFunctions();
 //storageHandler.populateStorage();
 domHandler.buildBase();
-let currentView = "unarchived";
+let currentView = "everythingView";
 domHandler.renderTodoList(listHandler.getList(currentView));
 refreshListeners();
 //TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
@@ -23,7 +23,6 @@ function refreshListeners() {
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index),
         domHandler.renderTodoList(listHandler.getList(currentView));
       storageHandler.populateStorage(listHandler.getList());
-
       refreshListeners();
     });
   });
@@ -69,26 +68,39 @@ function refreshListeners() {
     storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
-
-  let archiveView = document.querySelector("#archiveView");
+  /*   let archiveView = document.querySelector("#archiveView");
   archiveView.onclick = function () {
     let pageTitle = document.getElementById("page-title");
     pageTitle.textContent = "Archive";
     domHandler.changeView(archiveView);
     currentView = "archived";
     domHandler.renderTodoList(listHandler.getList(currentView));
-    refreshListeners();
-  };
-  let everythingView = document.querySelector("#everythingView");
+  }; */
+  /*   let everythingView = document.querySelector("#everythingView");
   everythingView.onclick = function () {
     let pageTitle = document.getElementById("page-title");
     pageTitle.textContent = "Everything";
     domHandler.changeView(everythingView);
     currentView = "unarchived";
     domHandler.renderTodoList(listHandler.getList(currentView));
-    refreshListeners();
-  };
+  }; */
 }
+function navListeners() {
+  let navFilter = document.querySelectorAll(".nav-filter");
+  navFilter.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      let pageTitle = document.getElementById("page-title");
+      pageTitle.textContent = element.querySelector(".nf-label").textContent;
+      domHandler.changeView(element);
+      currentView = element.id;
+      console.log("current view: " + currentView);
+      domHandler.renderTodoList(listHandler.getList(currentView));
+      refreshListeners();
+    });
+  });
+}
+navListeners();
+
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function storageAvailable(type) {
   let storage;
