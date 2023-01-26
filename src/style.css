@@ -134,13 +134,13 @@ button:focus {
 }
 
 .High {
-  background-color: hsla(9, 100%, 64%, 0.5);
+  background-color: hsla(9, 100%, 64%, 0.3);
 }
 .Medium {
-  background-color: hsla(60, 100%, 50%, 0.5);
+  background-color: hsla(60, 100%, 50%, 0.3);
 }
 .Low {
-  background-color: hsla(219, 79%, 66%, 0.5);
+  background-color: hsla(219, 79%, 66%, 0.3);
 }
 
 #add-todo {
