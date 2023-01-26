@@ -136,7 +136,7 @@ const todoFunctions = (loadedList) => {
       return todoList.filter(filterArchived);
     } else if (filter === "unarchived") {
       console.log("trying to filter list - unarchived");
-      return todoList.filter(filterArchived);
+      return todoList.filter(filterUnArchived);
     } else {
       console.log("list didn't filter here");
       return todoList;

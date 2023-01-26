@@ -8,7 +8,8 @@ const listHandler = todoFunctions(storageHandler.retreiveStorage());
 const domHandler = domFunctions();
 //storageHandler.populateStorage();
 domHandler.buildBase();
-domHandler.renderTodoList(listHandler.getList());
+let currentView = "unarchived";
+domHandler.renderTodoList(listHandler.getList(currentView));
 refreshListeners();
 //TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
 //TODO add  a module for projects
@@ -20,7 +21,7 @@ function refreshListeners() {
   todoChecks.forEach((element) => {
     element.addEventListener("click", function funct() {
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index),
-        domHandler.renderTodoList(listHandler.getList());
+        domHandler.renderTodoList(listHandler.getList(currentView));
       storageHandler.populateStorage(listHandler.getList());
 
       refreshListeners();
@@ -30,7 +31,7 @@ function refreshListeners() {
   todoPriority.forEach((element) => {
     element.addEventListener("click", function funct() {
       listHandler.togglePriority(element.parentElement.dataset.index),
-        domHandler.renderTodoList(listHandler.getList());
+        domHandler.renderTodoList(listHandler.getList(currentView));
       storageHandler.populateStorage(listHandler.getList());
       refreshListeners();
     });
@@ -62,7 +63,7 @@ function refreshListeners() {
       "",
       false
     );
-    domHandler.renderTodoList(listHandler.getList());
+    domHandler.renderTodoList(listHandler.getList(currentView));
     domHandler.closeModal();
     console.log(listHandler.getList());
     storageHandler.populateStorage(listHandler.getList());
@@ -74,7 +75,8 @@ function refreshListeners() {
     let pageTitle = document.getElementById("page-title");
     pageTitle.textContent = "Archive";
     domHandler.changeView(archiveView);
-    domHandler.renderTodoList(listHandler.getList("archived"));
+    currentView = "archived";
+    domHandler.renderTodoList(listHandler.getList(currentView));
     refreshListeners();
   };
   let everythingView = document.querySelector("#everythingView");
@@ -82,9 +84,8 @@ function refreshListeners() {
     let pageTitle = document.getElementById("page-title");
     pageTitle.textContent = "Everything";
     domHandler.changeView(everythingView);
-    domHandler.renderTodoList(
-      listHandler.getList(listHandler.getList("unarchived"))
-    );
+    currentView = "unarchived";
+    domHandler.renderTodoList(listHandler.getList(currentView));
     refreshListeners();
   };
 }
