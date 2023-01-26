@@ -68,22 +68,6 @@ function refreshListeners() {
     storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
-  /*   let archiveView = document.querySelector("#archiveView");
-  archiveView.onclick = function () {
-    let pageTitle = document.getElementById("page-title");
-    pageTitle.textContent = "Archive";
-    domHandler.changeView(archiveView);
-    currentView = "archived";
-    domHandler.renderTodoList(listHandler.getList(currentView));
-  }; */
-  /*   let everythingView = document.querySelector("#everythingView");
-  everythingView.onclick = function () {
-    let pageTitle = document.getElementById("page-title");
-    pageTitle.textContent = "Everything";
-    domHandler.changeView(everythingView);
-    currentView = "unarchived";
-    domHandler.renderTodoList(listHandler.getList(currentView));
-  }; */
 }
 function navListeners() {
   let navFilter = document.querySelectorAll(".nav-filter");
