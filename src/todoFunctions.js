@@ -31,6 +31,7 @@ const todo = (
     };
   };
   const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
+  const setPriority = (newPriority) => (todoPriority = newPriority);
   function newTodo() {}
   return {
     newTodo,
@@ -39,6 +40,7 @@ const todo = (
     getDue,
     getPriority,
     getProject,
+    setPriority,
     getArchiveStatus,
     setArchiveStatus,
     getAllDetails,
@@ -52,7 +54,7 @@ const todoFunctions = (loadedList) => {
       "This is a test title",
       "This is a todo description",
       "2023-01-18",
-      "High Priority",
+      "High",
       "",
       false
     );
@@ -60,7 +62,7 @@ const todoFunctions = (loadedList) => {
       "Here is another todo item",
       "This is a todo description",
       "2023-01-18",
-      "Low Priority",
+      "Low",
       "",
       true
     );
@@ -126,6 +128,18 @@ const todoFunctions = (loadedList) => {
       console.log("archive status set to true");
     }
   };
+  const togglePriority = (index) => {
+    if (todoList[index].getPriority() === "High") {
+      todoList[index].setPriority("Medium");
+      console.log("Priority set to medium");
+    } else if (todoList[index].getPriority() === "Medium") {
+      todoList[index].setPriority("Low");
+      console.log("Priority set to Low");
+    } else {
+      todoList[index].setPriority("High");
+      console.log("Priority set to High");
+    }
+  };
   const newTodo = (
     title,
     description,
@@ -148,6 +162,7 @@ const todoFunctions = (loadedList) => {
   return {
     getList,
     toggleArchiveStatus,
+    togglePriority,
     newTodo,
     filterArchived,
     filterUnArchived,

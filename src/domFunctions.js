@@ -244,8 +244,8 @@ const domFunctions = (name, date) => {
       const todoPriority = buildElement(
         "button",
         "",
-        ["todo-priority"],
-        item.getPriority()
+        ["todo-priority", item.getPriority()],
+        item.getPriority() + " priority"
       );
       todoContainer.appendChild(todoPriority);
     });

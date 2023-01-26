@@ -27,6 +27,15 @@ function refreshListeners() {
       refreshListeners();
     });
   });
+  let todoPriority = [...document.getElementsByClassName("todo-priority")];
+  todoPriority.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      listHandler.togglePriority(element.parentElement.dataset.index),
+        domHandler.renderTodoList(listHandler.getList());
+      storageHandler.populateStorage(listHandler.getList());
+      refreshListeners();
+    });
+  });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
   //TODO this is maybe not the way to submit the form correctly. need to rework this.

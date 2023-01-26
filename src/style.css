@@ -123,12 +123,24 @@ button:focus {
 }
 
 .todo-priority {
-  background-color: bisque;
   grid-column: 4;
   display: flex;
   align-self: center;
   justify-self: right;
+  text-align: center;
   font-size: small;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.High {
+  background-color: hsla(9, 100%, 64%, 0.5);
+}
+.Medium {
+  background-color: hsla(60, 100%, 50%, 0.5);
+}
+.Low {
+  background-color: hsla(219, 79%, 66%, 0.5);
 }
 
 #add-todo {
