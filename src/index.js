@@ -12,7 +12,6 @@ domHandler.renderTodoList(listHandler.getList());
 refreshListeners();
 //TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
 //TODO add  a module for projects
-//TODO implement localstorage to save and retreive the todo items
 //TODO refactor the tasks so that they are included as part of projects
 //TODO make the nav filters filter through the projects to only show todo's with the correct properties e.g. date
 
