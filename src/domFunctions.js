@@ -290,6 +290,57 @@ const domFunctions = (name, date) => {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
+
+  function openEditModal(obj) {
+    const modal = buildElement("div", "myEditModal", ["modal"]);
+    const modalContent = buildElement("div", "", ["modal-content"]);
+    const modalForm = buildElement(
+      "div",
+      "",
+      ["modal-form"],
+      '<form action="" method="post" id="new-todo">' +
+        '<label for="editTitle">Title<input type="text" name="editTitle" id="edit-title" value="' +
+        obj.todoTitle +
+        '" required /></label>' +
+        '<label for="editDescription">Description<input type="text" name="edit-description" id="edit-description" value="' +
+        obj.todoDescription +
+        '" required /></label>' +
+        '<label for="edit-due">Due:<input type="date" name="edit-due" id="edit-due" value="' +
+        obj.todoDue +
+        '"  required /></label>' +
+        '<label for="submit"><input type="button" value="Save" id="edit-save" /></label>' +
+        "</form>"
+    );
+    modalContent.append(modalForm);
+    const modalClose = buildElement(
+      "button",
+      "editClose",
+      ["close"],
+      "&times;"
+    );
+    modalContent.append(modalClose);
+    modal.append(modalContent);
+    let main = document.getElementById("display");
+    main.append(modal);
+    // Get the <span> element that closes the modal
+    var span = document.getElementById("editClose");
+    // When the user clicks on the button, open the modal
+    modal.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
+  function closeEditModal() {
+    var modal = document.getElementById("myEditModal");
+    modal.style.display = "none";
+  }
   //TODO fix loading of whole list on checking a todo box
   function changeView(newView) {
     currentView = document.getElementsByClassName("activeView")[0];
@@ -303,6 +354,8 @@ const domFunctions = (name, date) => {
     openModal,
     closeModal,
     changeView,
+    openEditModal,
+    closeEditModal,
   };
 };
 

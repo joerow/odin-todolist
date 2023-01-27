@@ -69,7 +69,6 @@ const todo = (
 };
 const todoFunctions = (loadedList) => {
   let todoList = [];
-  console.log(loadedList);
   const loadDefaults = () => {
     let testy = todo(
       "This is a test title",
@@ -140,10 +139,10 @@ const todoFunctions = (loadedList) => {
 
   const getList = (filter) => {
     if (filter === "archiveView") {
-      console.log("trying to filter list - archived");
+      console.log("filter = archiveView so showing archived");
       return todoList.filter(filterArchived);
     } else if (filter === "everythingView") {
-      console.log("trying to filter list - unarchived");
+      console.log("filter = everythingView so showing unArchived");
       return todoList.filter(filterUnArchived);
     } else {
       console.log("list didn't filter here");
@@ -163,12 +162,35 @@ const todoFunctions = (loadedList) => {
       console.log("archive status set to true");
     }
   };
-  const todoDelete = (uid) => {
+  const getIndex = (uid) => {
     const todoItemIndex = todoList.findIndex((obj) => {
       return obj.getUid() === uid;
     });
+    console.log("todo item index found: " + todoItemIndex);
+    return todoItemIndex;
+  };
+  const todoDelete = (uid) => {
+    const todoItemIndex = getIndex(uid);
+    console.log("deleting todo item at index " + todoItemIndex);
     todoList.splice(todoItemIndex, 1);
   };
+  const todoEdit = (
+    uid,
+    newTitle,
+    newDescription,
+    newDue,
+    newPriority,
+    newProject
+  ) => {
+    const todoItemIndex = getIndex(uid);
+    console.log(todoList[todoItemIndex].getTitle());
+    todoList[todoItemIndex].setTitle(newTitle);
+    todoList[todoItemIndex].setDescription(newDescription);
+    todoList[todoItemIndex].setDue(newDue);
+    todoList[todoItemIndex].setPriority(newPriority);
+    todoList[todoItemIndex].setProject(newProject);
+  };
+
   const togglePriority = (uid) => {
     const todoitem = todoList.find((obj) => {
       return obj.getUid() === uid;
@@ -202,7 +224,6 @@ const todoFunctions = (loadedList) => {
     );
     todoList.push(newtitle);
   };
-
   return {
     getList,
     toggleArchiveStatus,
@@ -211,6 +232,8 @@ const todoFunctions = (loadedList) => {
     filterArchived,
     filterUnArchived,
     todoDelete,
+    todoEdit,
+    getIndex,
   };
 };
 export { todo, todoFunctions };

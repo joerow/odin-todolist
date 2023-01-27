@@ -52,18 +52,8 @@ function refreshListeners() {
       return "No one selected";
     }
   }
-  let todoDelete = [...document.getElementsByClassName("todo-delete")];
-  console.log(todoDelete);
-  todoDelete.forEach((element) => {
-    element.addEventListener("click", function funct() {
-      listHandler.todoDelete(element.parentElement.parentElement.dataset.index);
-      domHandler.renderTodoList(listHandler.getList(currentView));
-      storageHandler.populateStorage(listHandler.getList());
-      refreshListeners();
-    });
-  });
-
   newSubmit.onclick = function () {
+    /* create the new todo */
     listHandler.newTodo(
       newTitle.value,
       newDescription.value,
@@ -72,12 +62,58 @@ function refreshListeners() {
       "",
       false
     );
+    /* reset the modal values */
+    newTitle.value = "";
+    newDescription.value = "";
+    newDue.value = null;
+
+    // redraw and save the todolist
     domHandler.renderTodoList(listHandler.getList(currentView));
     domHandler.closeModal();
     console.log(listHandler.getList());
     storageHandler.populateStorage(listHandler.getList());
     refreshListeners();
   };
+  let todoDelete = [...document.getElementsByClassName("todo-delete")];
+  todoDelete.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      listHandler.todoDelete(element.parentElement.parentElement.dataset.index);
+      domHandler.renderTodoList(listHandler.getList(currentView));
+      storageHandler.populateStorage(listHandler.getList());
+      refreshListeners();
+    });
+  });
+  let todoEdit = [...document.getElementsByClassName("todo-edit")];
+  todoEdit.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      //get all the details
+      let todoIndex = listHandler.getIndex(
+        element.parentElement.parentElement.dataset.index
+      );
+      let item = listHandler.getList()[todoIndex].getAllDetails();
+      //open to modal with details loaded
+      domHandler.openEditModal(item);
+      // this is for saving the details
+      let editTitle = document.querySelector("#edit-title");
+      let editDescription = document.querySelector("#edit-description");
+      let editDue = document.querySelector("#edit-due");
+      let saveEdit = document.getElementById("edit-save");
+      saveEdit.onclick = function () {
+        listHandler.todoEdit(
+          item.uid,
+          editTitle.value,
+          editDescription.value,
+          editDue.value,
+          item.todoPriority,
+          ""
+        );
+        storageHandler.populateStorage(listHandler.getList());
+        domHandler.renderTodoList(listHandler.getList(currentView));
+        domHandler.closeEditModal();
+        refreshListeners();
+      };
+    });
+  });
 }
 function navListeners() {
   let navFilter = document.querySelectorAll(".nav-filter");
