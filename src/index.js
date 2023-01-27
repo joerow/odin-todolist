@@ -20,8 +20,8 @@ function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
   todoChecks.forEach((element) => {
     element.addEventListener("click", function funct() {
-      listHandler.toggleArchiveStatus(element.parentElement.dataset.index),
-        domHandler.renderTodoList(listHandler.getList(currentView));
+      listHandler.toggleArchiveStatus(element.parentElement.dataset.index);
+      domHandler.renderTodoList(listHandler.getList(currentView));
       storageHandler.populateStorage(listHandler.getList());
       refreshListeners();
     });
@@ -29,8 +29,8 @@ function refreshListeners() {
   let todoPriority = [...document.getElementsByClassName("todo-priority")];
   todoPriority.forEach((element) => {
     element.addEventListener("click", function funct() {
-      listHandler.togglePriority(element.parentElement.dataset.index),
-        domHandler.renderTodoList(listHandler.getList(currentView));
+      listHandler.togglePriority(element.parentElement.dataset.index);
+      domHandler.renderTodoList(listHandler.getList(currentView));
       storageHandler.populateStorage(listHandler.getList());
       refreshListeners();
     });
@@ -52,6 +52,16 @@ function refreshListeners() {
       return "No one selected";
     }
   }
+  let todoDelete = [...document.getElementsByClassName("todo-delete")];
+  console.log(todoDelete);
+  todoDelete.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      listHandler.todoDelete(element.parentElement.parentElement.dataset.index);
+      domHandler.renderTodoList(listHandler.getList(currentView));
+      storageHandler.populateStorage(listHandler.getList());
+      refreshListeners();
+    });
+  });
 
   newSubmit.onclick = function () {
     listHandler.newTodo(

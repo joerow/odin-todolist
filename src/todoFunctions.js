@@ -26,11 +26,17 @@ const todo = (
   setUid();
   const getUid = () => uid;
   const getTitle = () => todoTitle;
+  const setTitle = (newTitle) => (todoTitle = newTitle);
   const getDescription = () => todoDescription;
+  const setDescription = (newDescription) => (todoDescription = newDescription);
   const getDue = () => todoDue;
+  const setDue = (newDue) => (todoDue = newDue);
   const getPriority = () => todoPriority;
+  const setPriority = (newPriority) => (todoPriority = newPriority);
   const getProject = () => todoProject;
+  const setProject = (newProject) => (todoProject = newProject);
   const getArchiveStatus = () => todoArchiveStatus;
+  const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
   const getAllDetails = () => {
     return {
       todoTitle,
@@ -42,17 +48,19 @@ const todo = (
       uid,
     };
   };
-  const setArchiveStatus = (newStatus) => (todoArchiveStatus = newStatus);
-  const setPriority = (newPriority) => (todoPriority = newPriority);
   function newTodo() {}
   return {
     newTodo,
     getTitle,
+    setTitle,
     getDescription,
+    setDescription,
     getDue,
+    setDue,
     getPriority,
-    getProject,
     setPriority,
+    getProject,
+    setProject,
     getArchiveStatus,
     setArchiveStatus,
     getAllDetails,
@@ -155,6 +163,12 @@ const todoFunctions = (loadedList) => {
       console.log("archive status set to true");
     }
   };
+  const todoDelete = (uid) => {
+    const todoItemIndex = todoList.findIndex((obj) => {
+      return obj.getUid() === uid;
+    });
+    todoList.splice(todoItemIndex, 1);
+  };
   const togglePriority = (uid) => {
     const todoitem = todoList.find((obj) => {
       return obj.getUid() === uid;
@@ -196,6 +210,7 @@ const todoFunctions = (loadedList) => {
     newTodo,
     filterArchived,
     filterUnArchived,
+    todoDelete,
   };
 };
 export { todo, todoFunctions };
