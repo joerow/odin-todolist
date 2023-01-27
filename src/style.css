@@ -114,7 +114,17 @@ button:focus {
 .todo-title {
   background-color: aquamarine;
   grid-row: 1;
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 2;
+}
+
+.todo-controls {
+  grid-row: 1;
+  grid-column: 4;
+  display: flex;
+  align-items: flex-end;
+  align-content: flex-end;
+  justify-self: flex-end;
+  gap: 5px;
 }
 
 .todo-due {

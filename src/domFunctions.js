@@ -235,8 +235,26 @@ const domFunctions = (name, date) => {
         ["todo-title"],
         item.getTitle()
       );
-
       todoContainer.appendChild(todoTitle);
+      // add the edit and delete icons */
+      const todoControls = buildElement("div", "", ["todo-controls"], "");
+      todoContainer.appendChild(todoControls);
+      // add the edit and delete icons */
+      const todoEdit = buildElement(
+        "button",
+        "",
+        ["todo-edit"],
+        '<span class="material-symbols-outlined">edit</span>'
+      );
+      todoControls.appendChild(todoEdit);
+
+      const todoDelete = buildElement(
+        "button",
+        "",
+        ["todo-delete"],
+        '<span class="material-symbols-outlined">delete</span>'
+      );
+      todoControls.appendChild(todoDelete);
       //add the due date
       const todoDue = buildElement("button", "", ["todo-due"], item.getDue());
       todoContainer.appendChild(todoDue);
