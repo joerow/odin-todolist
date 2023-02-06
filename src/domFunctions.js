@@ -1,3 +1,4 @@
+import { isToday } from "date-fns";
 const domFunctions = (name, date) => {
   let currentView = document.getElementsByClassName("activeView")[0];
   console.log("test");
@@ -207,7 +208,7 @@ const domFunctions = (name, date) => {
     display.innerHTML = "";
     todoList.forEach((item, index) => {
       //create the container for the item
-      const todoContainer = buildElement("button", "", ["todo-item"]);
+      const todoContainer = buildElement("div", "", ["todo-item"]);
       todoContainer.dataset.index = item.getUid();
       display.append(todoContainer);
       //add the checkbox icon
@@ -230,7 +231,7 @@ const domFunctions = (name, date) => {
       todoContainer.append(todoCheck);
       // add the title */
       const todoTitle = buildElement(
-        "button",
+        "div",
         "",
         ["todo-title"],
         item.getTitle()
@@ -256,7 +257,12 @@ const domFunctions = (name, date) => {
       );
       todoControls.appendChild(todoDelete);
       //add the due date
-      const todoDue = buildElement("button", "", ["todo-due"], item.getDue());
+      const todoDue = buildElement(
+        "div",
+        "",
+        ["todo-due"],
+        item.getDue() + "is today: " + isToday(item.getDue())
+      );
       todoContainer.appendChild(todoDue);
       // add the priority
       const todoPriority = buildElement(

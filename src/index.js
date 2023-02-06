@@ -2,6 +2,13 @@ import "./style.css";
 import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 import { storageFunctions } from "./storageFunctions";
+import {
+  format,
+  formatDistance,
+  formatRelative,
+  subDays,
+  parseISO,
+} from "date-fns";
 
 const storageHandler = storageFunctions();
 const listHandler = todoFunctions(storageHandler.retreiveStorage());
@@ -158,6 +165,9 @@ function storageAvailable(type) {
     );
   }
 }
+
+const date = "2021-12-20";
+console.log(format(parseISO(date), "dd-MM-yyyy"));
 //console.log("Session storage available: " + storageAvailable("sessionStorage"));
 //console.log("Local storage available: " + storageAvailable("localStorage"));
 

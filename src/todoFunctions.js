@@ -1,3 +1,5 @@
+import { format, compareAsc, parseISO } from "date-fns";
+import { isToday } from "date-fns";
 //module for managing lists
 //factory function for creating projects
 const todo = (
@@ -10,7 +12,7 @@ const todo = (
 ) => {
   let todoTitle = title;
   let todoDescription = description;
-  let todoDue = dueDate;
+  let todoDue = parseISO(dueDate);
   let todoPriority = priority;
   let todoProject = project;
   let todoArchiveStatus = archiveStatus;
@@ -29,8 +31,8 @@ const todo = (
   const setTitle = (newTitle) => (todoTitle = newTitle);
   const getDescription = () => todoDescription;
   const setDescription = (newDescription) => (todoDescription = newDescription);
-  const getDue = () => todoDue;
-  const setDue = (newDue) => (todoDue = newDue);
+  const getDue = () => format(todoDue, "dd-MM-yyyy");
+  const setDue = (newDue) => (todoDue = parseISO(newDue));
   const getPriority = () => todoPriority;
   const setPriority = (newPriority) => (todoPriority = newPriority);
   const getProject = () => todoProject;
