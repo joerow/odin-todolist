@@ -31,7 +31,8 @@ const todo = (
   const setTitle = (newTitle) => (todoTitle = newTitle);
   const getDescription = () => todoDescription;
   const setDescription = (newDescription) => (todoDescription = newDescription);
-  const getDue = () => format(todoDue, "dd-MM-yyyy");
+  const getDueFormatted = () => format(todoDue, "dd-MM-yyyy");
+  const getDueISO = () => todoDue;
   const setDue = (newDue) => (todoDue = parseISO(newDue));
   const getPriority = () => todoPriority;
   const setPriority = (newPriority) => (todoPriority = newPriority);
@@ -57,7 +58,8 @@ const todo = (
     setTitle,
     getDescription,
     setDescription,
-    getDue,
+    getDueFormatted,
+    getDueISO,
     setDue,
     getPriority,
     setPriority,

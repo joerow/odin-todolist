@@ -1,4 +1,4 @@
-import { isToday } from "date-fns";
+import { isToday, parseISO } from "date-fns";
 const domFunctions = (name, date) => {
   let currentView = document.getElementsByClassName("activeView")[0];
   console.log("test");
@@ -261,8 +261,11 @@ const domFunctions = (name, date) => {
         "div",
         "",
         ["todo-due"],
-        item.getDue() + "is today: " + isToday(item.getDue())
+        item.getDueFormatted() + " is today: " + isToday(item.getDueISO())
       );
+      if (isToday(item.getDueISO())) {
+        todoDue.innerHTML = "Today";
+      }
       todoContainer.appendChild(todoDue);
       // add the priority
       const todoPriority = buildElement(
