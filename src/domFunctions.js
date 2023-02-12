@@ -354,7 +354,6 @@ const domFunctions = (name, date) => {
     var modal = document.getElementById("myEditModal");
     modal.style.display = "none";
   }
-  //TODO fix loading of whole list on checking a todo box
   function changeView(newView) {
     currentView = document.getElementsByClassName("activeView")[0];
     currentView.classList.remove("activeView");
