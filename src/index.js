@@ -2,6 +2,7 @@ import "./style.css";
 import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 import { storageFunctions } from "./storageFunctions";
+import { projects } from "./projects";
 import {
   format,
   formatDistance,
@@ -11,6 +12,9 @@ import {
 } from "date-fns";
 
 const storageHandler = storageFunctions();
+const projectHandler = projects(storageHandler.retreiveStorage("isAProject"));
+console.log(projectHandler.listProjects() + " projects");
+storageHandler.populateStorage(projectHandler.listProjects(), "isAProject");
 const listHandler = todoFunctions(storageHandler.retreiveStorage());
 const domHandler = domFunctions();
 //storageHandler.populateStorage();

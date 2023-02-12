@@ -118,6 +118,7 @@ const todoFunctions = (loadedList) => {
       x.push(todoList[index].getAllDetails());
     }
     localStorage.setItem("list", JSON.stringify(x));
+    console.log("this is run");
   }
 
   const filterArchived = (item) => {
