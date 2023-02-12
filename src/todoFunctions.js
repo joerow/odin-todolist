@@ -133,6 +133,13 @@ const todoFunctions = (loadedList) => {
       return false;
     }
   };
+  const filterToday = (item) => {
+    if (isToday(item.getDueISO())) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /*   const findUid = (uid) => {
     if (getUid() === uid) {
       return true;
@@ -148,6 +155,9 @@ const todoFunctions = (loadedList) => {
     } else if (filter === "everythingView") {
       console.log("filter = everythingView so showing unArchived");
       return todoList.filter(filterUnArchived);
+    } else if (filter === "todayView") {
+      console.log("filter = today so showing items for today");
+      return todoList.filter(filterToday);
     } else {
       console.log("list didn't filter here");
       return todoList;

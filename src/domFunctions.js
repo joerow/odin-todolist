@@ -327,6 +327,10 @@ const domFunctions = (name, date) => {
       ["close"],
       "&times;"
     );
+    modalClose.onclick = function () {
+      modal.style.display = "none";
+    };
+
     modalContent.append(modalClose);
     modal.append(modalContent);
     let main = document.getElementById("display");
