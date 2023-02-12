@@ -18,10 +18,8 @@ domHandler.buildBase();
 let currentView = "everythingView";
 domHandler.renderTodoList(listHandler.getList(currentView));
 refreshListeners();
-//TODO add a pub/sub module which will allow the domFunctions and todofunctions to interact through a mediator
 //TODO add  a module for projects
 //TODO refactor the tasks so that they are included as part of projects
-//TODO make the nav filters filter through the projects to only show todo's with the correct properties e.g. date
 
 function refreshListeners() {
   let todoChecks = [...document.getElementsByClassName("todo-check")];
@@ -44,7 +42,7 @@ function refreshListeners() {
   });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
-  //TODO this is maybe not the way to submit the form correctly. need to rework this.
+
   let newSubmit = document.querySelector("#new-submit");
   let newTitle = document.querySelector("#new-title");
   let newDescription = document.querySelector("#new-description");
