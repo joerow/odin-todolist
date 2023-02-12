@@ -1,5 +1,6 @@
-import { format, compareAsc, parseISO } from "date-fns";
+import { format, compareAsc, parseISO, isFuture } from "date-fns";
 import { isToday } from "date-fns";
+import { el } from "date-fns/locale";
 //module for managing lists
 //factory function for creating projects
 const todo = (
@@ -140,6 +141,13 @@ const todoFunctions = (loadedList) => {
       return false;
     }
   };
+  const filterUpcoming = (item) => {
+    if (isFuture(item.getDueISO())) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /*   const findUid = (uid) => {
     if (getUid() === uid) {
       return true;
@@ -158,6 +166,9 @@ const todoFunctions = (loadedList) => {
     } else if (filter === "todayView") {
       console.log("filter = today so showing items for today");
       return todoList.filter(filterToday);
+    } else if (filter === "upcomingView") {
+      console.log("filter = upcoming so showing items in the future");
+      return todoList.filter(filterUpcoming);
     } else {
       console.log("list didn't filter here");
       return todoList;
