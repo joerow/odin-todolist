@@ -10,7 +10,7 @@ const projects = () => {
     return [...projects];
   }
   const loadDefaults = () => {
-    projects.push("Default", "home", "work");
+    projects.push("Default", "Personal", "Work");
     console.log("populated projects with defaults");
   };
   if (projects.length === 0) {

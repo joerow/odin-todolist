@@ -1,4 +1,6 @@
 import { isToday, parseISO } from "date-fns";
+import { projects } from "./projects";
+
 const domFunctions = (name, date) => {
   let currentView = document.getElementsByClassName("activeView")[0];
   console.log("test");
@@ -18,7 +20,7 @@ const domFunctions = (name, date) => {
     element.innerHTML = innerHTML;
     return element;
   }
-  function nav() {
+  function nav(loadedProjects) {
     const nav = buildElement("div", "", ["nav"]);
     // top section including profile
     const navTop = buildElement("div", "", ["nav-top"]);
@@ -134,13 +136,18 @@ const domFunctions = (name, date) => {
     const navSeparator2 = buildElement("div", "", ["nav-separator"], "");
     nav.append(navSeparator2);
 
-    const navProjects = buildElement(
-      "div",
-      "",
-      ["nav-projects"],
-      "Nav Projects"
-    );
+    const navProjects = buildElement("div", "", ["nav-projects"]);
     nav.append(navProjects);
+    for (let index = 0; index < loadedProjects.length; index++) {
+      const element = loadedProjects[index];
+      const navProject = buildElement(
+        "button",
+        element,
+        ["nav-project"],
+        element
+      );
+      navProjects.append(navProject);
+    }
 
     // create the footer
     const footer = buildElement("div", "", ["footer"], "Footer");
@@ -148,7 +155,7 @@ const domFunctions = (name, date) => {
     return nav;
   }
 
-  function buildBase() {
+  function buildBase(loadedProjects) {
     // create the grid contianer
     const element = buildElement(
       "div",
@@ -158,7 +165,7 @@ const domFunctions = (name, date) => {
     );
 
     // create the nav menu
-    element.append(nav());
+    element.append(nav(loadedProjects));
 
     // create the main area
     const main = buildElement("div", "display", ["main-area"]);

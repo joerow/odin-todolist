@@ -14,11 +14,13 @@ import {
 const storageHandler = storageFunctions();
 const projectHandler = projects(storageHandler.retreiveStorage("isAProject"));
 console.log(projectHandler.listProjects() + " projects");
+let xy = [projectHandler.listProjects()];
+console.log(xy);
 storageHandler.populateStorage(projectHandler.listProjects(), "isAProject");
 const listHandler = todoFunctions(storageHandler.retreiveStorage());
 const domHandler = domFunctions();
 //storageHandler.populateStorage();
-domHandler.buildBase();
+domHandler.buildBase(projectHandler.listProjects());
 let currentView = "everythingView";
 domHandler.renderTodoList(listHandler.getList(currentView));
 refreshListeners();
