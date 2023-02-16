@@ -3,6 +3,7 @@ import { projects } from "./projects";
 
 const domFunctions = (name, date) => {
   let currentView = document.getElementsByClassName("activeView")[0];
+  let currentProject = document.getElementsByClassName("activeProject")[0];
   console.log("test");
   function buildElement(elementType, id, classList, innerHTML) {
     const element = document.createElement(elementType);
@@ -187,7 +188,7 @@ const domFunctions = (name, date) => {
     const modal = buildElement("div", "myModal", ["modal"]);
 
     const modalContent = buildElement("div", "", ["modal-content"]);
-
+    //TODO add edit project to the new todo modal
     const modalForm = buildElement(
       "div",
       "",
@@ -310,6 +311,7 @@ const domFunctions = (name, date) => {
   function openEditModal(obj) {
     const modal = buildElement("div", "myEditModal", ["modal"]);
     const modalContent = buildElement("div", "", ["modal-content"]);
+    //TODO add edit project to the edit modal
     const modalForm = buildElement(
       "div",
       "",
@@ -366,6 +368,12 @@ const domFunctions = (name, date) => {
     currentView.classList.remove("activeView");
     newView.classList.add("activeView");
   }
+
+  function changeProject(newProject) {
+    currentProject = document.getElementsByClassName("activeProject")[0];
+    currentProject.classList.remove("activeProject");
+    newProject.classList.add("activeProject");
+  }
   return {
     nav,
     buildBase,
@@ -375,6 +383,7 @@ const domFunctions = (name, date) => {
     changeView,
     openEditModal,
     closeEditModal,
+    changeProject,
   };
 };
 

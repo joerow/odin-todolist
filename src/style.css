@@ -71,7 +71,8 @@ button:focus {
   gap: 5px;
 }
 
-.nav-filters {
+.nav-filters,
+.nav-projects {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -85,13 +86,6 @@ button:focus {
   width: 100%;
   gap: 10px;
   cursor: pointer;
-}
-
-.nav-projects {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .nav-project {
@@ -229,6 +223,7 @@ button:focus {
   gap: 5px;
 }
 
-.activeView {
+.activeView,
+.activeProject {
   background-color: rgb(202, 202, 202);
 }

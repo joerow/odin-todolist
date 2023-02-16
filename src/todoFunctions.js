@@ -80,7 +80,7 @@ const todoFunctions = (loadedList) => {
       "This is a todo description",
       "2023-01-18",
       "High",
-      "",
+      "Default",
       false,
       "1"
     );
@@ -89,7 +89,7 @@ const todoFunctions = (loadedList) => {
       "This is a todo description",
       "2023-01-18",
       "Low",
-      "",
+      "Default",
       true,
       "2"
     );
@@ -149,6 +149,13 @@ const todoFunctions = (loadedList) => {
       return false;
     }
   };
+  function filterProject(item) {
+    if (item.getProject() === this) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   /*   const findUid = (uid) => {
     if (getUid() === uid) {
       return true;
@@ -157,19 +164,39 @@ const todoFunctions = (loadedList) => {
     }
   }; */
 
-  const getList = (filter) => {
+  const getList = (filter, project) => {
     if (filter === "archiveView") {
-      console.log("filter = archiveView so showing archived");
-      return todoList.filter(filterArchived);
+      console.log(
+        "filter = archiveView so showing archived. Filtering by " +
+          project +
+          " project"
+      );
+      let viewList = todoList.filter(filterArchived);
+      return viewList.filter(filterProject, project);
     } else if (filter === "everythingView") {
-      console.log("filter = everythingView so showing unArchived");
-      return todoList.filter(filterUnArchived);
+      console.log(
+        "filter = everythingView so showing everything. Filtering by " +
+          project +
+          " project"
+      );
+      let viewList = todoList.filter(filterUnArchived);
+      return viewList.filter(filterProject, project);
     } else if (filter === "todayView") {
-      console.log("filter = today so showing items for today");
-      return todoList.filter(filterToday);
+      console.log(
+        "filter = todayView so showing Today. Filtering by " +
+          project +
+          " project"
+      );
+      let viewList = todoList.filter(filterToday);
+      return viewList.filter(filterProject, project);
     } else if (filter === "upcomingView") {
-      console.log("filter = upcoming so showing items in the future");
-      return todoList.filter(filterUpcoming);
+      console.log(
+        "filter = upcomingView so showing upcoming. Filtering by " +
+          project +
+          " project"
+      );
+      let viewList = todoList.filter(filterUpcoming);
+      return viewList.filter(filterProject, project);
     } else {
       console.log("list didn't filter here");
       return todoList;

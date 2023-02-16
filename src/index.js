@@ -22,7 +22,10 @@ const domHandler = domFunctions();
 //storageHandler.populateStorage();
 domHandler.buildBase(projectHandler.listProjects());
 let currentView = "everythingView";
-domHandler.renderTodoList(listHandler.getList(currentView));
+let currentProject = "Default";
+let aProject = document.getElementById("Default");
+aProject.classList.add("activeProject");
+domHandler.renderTodoList(listHandler.getList(currentView, currentProject));
 refreshListeners();
 //TODO add  a module for projects
 //TODO refactor the tasks so that they are included as part of projects
@@ -32,7 +35,9 @@ function refreshListeners() {
   todoChecks.forEach((element) => {
     element.addEventListener("click", function funct() {
       listHandler.toggleArchiveStatus(element.parentElement.dataset.index);
-      domHandler.renderTodoList(listHandler.getList(currentView));
+      domHandler.renderTodoList(
+        listHandler.getList(currentView, currentProject)
+      );
       storageHandler.populateStorage(listHandler.getList());
       refreshListeners();
     });
@@ -41,7 +46,9 @@ function refreshListeners() {
   todoPriority.forEach((element) => {
     element.addEventListener("click", function funct() {
       listHandler.togglePriority(element.parentElement.dataset.index);
-      domHandler.renderTodoList(listHandler.getList(currentView));
+      domHandler.renderTodoList(
+        listHandler.getList(currentView, currentProject)
+      );
       storageHandler.populateStorage(listHandler.getList());
       refreshListeners();
     });
@@ -79,7 +86,7 @@ function refreshListeners() {
     newDue.value = null;
 
     // redraw and save the todolist
-    domHandler.renderTodoList(listHandler.getList(currentView));
+    domHandler.renderTodoList(listHandler.getList(currentView, currentProject));
     domHandler.closeModal();
     console.log(listHandler.getList());
     storageHandler.populateStorage(listHandler.getList());
@@ -119,7 +126,9 @@ function refreshListeners() {
           ""
         );
         storageHandler.populateStorage(listHandler.getList());
-        domHandler.renderTodoList(listHandler.getList(currentView));
+        domHandler.renderTodoList(
+          listHandler.getList(currentView, currentProject)
+        );
         domHandler.closeEditModal();
         refreshListeners();
       };
@@ -135,12 +144,29 @@ function navListeners() {
       domHandler.changeView(element);
       currentView = element.id;
       console.log("current view: " + currentView);
-      domHandler.renderTodoList(listHandler.getList(currentView));
+      domHandler.renderTodoList(
+        listHandler.getList(currentView, currentProject)
+      );
       refreshListeners();
     });
   });
 }
 navListeners();
+function projectListeners() {
+  let navProject = document.querySelectorAll(".nav-project");
+  navProject.forEach((element) => {
+    element.addEventListener("click", function funct() {
+      domHandler.changeProject(element);
+      currentProject = element.id;
+      console.log("current project: " + currentProject);
+      domHandler.renderTodoList(
+        listHandler.getList(currentView, currentProject)
+      );
+      refreshListeners();
+    });
+  });
+}
+projectListeners();
 
 //local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function storageAvailable(type) {
