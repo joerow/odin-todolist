@@ -1,5 +1,3 @@
-import { todoFunctions } from "./todoFunctions.js";
-
 const storageFunctions = () => {
   function populateStorage(unsavedList, isAProject) {
     if (isAProject === "isAProject") {

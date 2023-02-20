@@ -149,6 +149,20 @@ const domFunctions = (name, date) => {
       );
       navProjects.append(navProject);
     }
+    const addNewProject = buildElement(
+      "button",
+      "add-new-project-area",
+      [],
+      ""
+    );
+    const addNewProjectButton = buildElement(
+      "button",
+      "add-new-project",
+      [],
+      '<span class="material-symbols-outlined" style="font-size: 2rem;">add_box</span>'
+    );
+    addNewProject.append(addNewProjectButton);
+    nav.append(addNewProject);
 
     // create the footer
     const footer = buildElement("div", "", ["footer"], "Footer");
@@ -307,7 +321,8 @@ const domFunctions = (name, date) => {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
-
+  //TODO make a modal for adding a new project
+  //
   function openEditModal(obj) {
     const modal = buildElement("div", "myEditModal", ["modal"]);
     const modalContent = buildElement("div", "", ["modal-content"]);

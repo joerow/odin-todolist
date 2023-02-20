@@ -3,13 +3,7 @@ import { todoFunctions } from "./todoFunctions.js";
 import { domFunctions } from "./domFunctions.js";
 import { storageFunctions } from "./storageFunctions";
 import { projects } from "./projects";
-import {
-  format,
-  formatDistance,
-  formatRelative,
-  subDays,
-  parseISO,
-} from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const storageHandler = storageFunctions();
 const projectHandler = projects(storageHandler.retreiveStorage("isAProject"));
@@ -70,6 +64,8 @@ function refreshListeners() {
       return "No one selected";
     }
   }
+  let newProject = document.querySelector(".activeProject");
+  console.log(newProject.id);
   newSubmit.onclick = function () {
     /* create the new todo */
     listHandler.newTodo(
@@ -77,7 +73,7 @@ function refreshListeners() {
       newDescription.value,
       newDue.value,
       getPrioritySelected(),
-      "",
+      newProject.id,
       false
     );
     /* reset the modal values */
@@ -167,38 +163,7 @@ function projectListeners() {
   });
 }
 projectListeners();
-
-//local storage functions from mdn web docs https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
-function storageAvailable(type) {
-  let storage;
-  try {
-    storage = window[type];
-    const x = "__storage_test__";
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return (
-      e instanceof DOMException &&
-      // everything except Firefox
-      (e.code === 22 ||
-        // Firefox
-        e.code === 1014 ||
-        // test name field too, because code might not be present
-        // everything except Firefox
-        e.name === "QuotaExceededError" ||
-        // Firefox
-        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
-      // acknowledge QuotaExceededError only if there's something already stored
-      storage &&
-      storage.length !== 0
-    );
-  }
+let addProject = document.querySelector("#add-project");
+function addNewProject() {
+  console.log(addProject);
 }
-
-const date = "2021-12-20";
-console.log(format(parseISO(date), "dd-MM-yyyy"));
-//console.log("Session storage available: " + storageAvailable("sessionStorage"));
-//console.log("Local storage available: " + storageAvailable("localStorage"));
-
-//some example todos

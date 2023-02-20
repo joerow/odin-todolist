@@ -227,3 +227,7 @@ button:focus {
 .activeProject {
   background-color: rgb(202, 202, 202);
 }
+
+#add-project {
+  height: 2rem;
+}
