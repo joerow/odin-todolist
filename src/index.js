@@ -49,7 +49,6 @@ function refreshListeners() {
   });
   let addTodo = document.querySelector("#add-todo");
   addTodo.addEventListener("click", (e) => domHandler.openModal());
-
   let newSubmit = document.querySelector("#new-submit");
   let newTitle = document.querySelector("#new-title");
   let newDescription = document.querySelector("#new-description");
@@ -130,6 +129,18 @@ function refreshListeners() {
       };
     });
   });
+  let addProject = document.querySelector("#add-new-project");
+  domHandler.newProjectModal();
+  addProject.addEventListener("click", (e) => domHandler.showNewProjectModal());
+  let saveNewProject = document.getElementById("new-project-save");
+  console.log(saveNewProject);
+  saveNewProject.onclick = function () {
+    let newProjectName = document.querySelector("#newProject");
+    projectHandler.newProject(newProjectName.value);
+    console.log(projectHandler.listProjects());
+    domHandler.closeNewProjectModal();
+    domHandler.buildBase(projectHandler.listProjects());
+  };
 }
 function navListeners() {
   let navFilter = document.querySelectorAll(".nav-filter");
@@ -163,7 +174,3 @@ function projectListeners() {
   });
 }
 projectListeners();
-let addProject = document.querySelector("#add-project");
-function addNewProject() {
-  console.log(addProject);
-}

@@ -389,6 +389,59 @@ const domFunctions = (name, date) => {
     currentProject.classList.remove("activeProject");
     newProject.classList.add("activeProject");
   }
+
+  function newProjectModal() {
+    const modal = buildElement("div", "project-modal", ["modal"]);
+    const modalContent = buildElement("div", "", ["modal-content"]);
+    const modalForm = buildElement(
+      "div",
+      "",
+      ["modal-form"],
+      '<form action="" method="post" id="new-todo">' +
+        '<label for="newProject">Project Name<input type="text" name="newProject" id="newProject" value="" required /></label>' +
+        '<label for="submit"><input type="button" value="Save" id="new-project-save" /></label>' +
+        "</form>"
+    );
+    modalContent.append(modalForm);
+    const modalClose = buildElement(
+      "button",
+      "newProjectClose",
+      ["close"],
+      "&times;"
+    );
+    modalClose.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    modalContent.append(modalClose);
+    modal.append(modalContent);
+    let main = document.getElementById("display");
+    main.append(modal);
+    // Get the <span> element that closes the modal
+    var span = document.getElementById("newProjectClose");
+    // When the user clicks on the button, open the modal
+    //modal.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
+
+  function showNewProjectModal() {
+    var modal = document.getElementById("project-modal");
+    modal.style.display = "block";
+  }
+  function closeNewProjectModal() {
+    var modal = document.getElementById("project-modal");
+    modal.style.display = "none";
+  }
+
   return {
     nav,
     buildBase,
@@ -399,6 +452,9 @@ const domFunctions = (name, date) => {
     openEditModal,
     closeEditModal,
     changeProject,
+    newProjectModal,
+    showNewProjectModal,
+    closeNewProjectModal,
   };
 };
 
